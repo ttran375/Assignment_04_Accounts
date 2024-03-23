@@ -693,6 +693,11 @@ public static class Bank
         return allTransactions;
     }
 
+
+}
+
+class Program
+{
     public static void Main(string[] args)
     {
         Console.WriteLine("\nAll acounts:");
