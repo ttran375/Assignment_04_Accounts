@@ -1,12 +1,3 @@
-# Assignment 4 – Implementing a Banking Application
-
-### Due: See course shell for due date and time
-
-<img src="./media/image1.png" style="width:6.1375in;height:3.77292in"
-alt="Graphical user interface Description automatically generated" />
-
-Check with you professor to see if you are permitted to work as a group.
-
 The application is by far the most complex system that you have
 attempted so far. It consists of eleven classes, two structs, one
 interface and two enums coupled in varying degrees of tightness. The
@@ -20,418 +11,6 @@ described.
 
 No method should have a **Console.WriteLine()** unless you are
 explicitly told to output something on the console.
-
-Each type must be in separate files.
-
-## ExceptionType enum
-
-You will implement this enum in Visual Studio. There are seven members:
-
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>ExceptionType</strong></p>
-<p>enum</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Constants</strong></td>
-</tr>
-<tr class="even">
-<td><blockquote>
-<p>ACCOUNT_DOES_NOT_EXIST,</p>
-<p>CREDIT_LIMIT_HAS_BEEN_EXCEEDED,</p>
-<p>NAME_NOT_ASSOCIATED_WITH_ACCOUNT,</p>
-<p>NO_OVERDRAFT,</p>
-<p>PASSWORD_INCORRECT,</p>
-<p>USER_DOES_NOT_EXIST,</p>
-<p>USER_NOT_LOGGED_IN</p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
-
-The members are self-explanatory.
-
-## AccountType enum
-
-You will implement this enum in Visual Studio. There are three members:
-
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>AccountType</strong></p>
-<p>enum</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Constants</strong></td>
-</tr>
-<tr class="even">
-<td><blockquote>
-<p>Checking,</p>
-<p>Saving,</p>
-<p>Visa</p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
-
-The members are self-explanatory.
-
-## Utils class
-
-\[The implementation for this class is given in the appendix. Create a
-class called Utls and copy and past the statements into the appropriate
-part of the file\]
-
-You will implement the Utils class in Visual Studio. This class is
-comprised of three fields and provides two static properties. It
-simulates the passage of time. Each time the **Time** property is
-accessed, it increases the internal field by a random amount. It is used
-to time stamped all banking events.
-
-A short description of each class member is given below:
-
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>Utils</strong></p>
-<p><strong>Static class</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Fields</strong></td>
-</tr>
-<tr class="even">
-<td><blockquote>
-<p>-$ _time : DayTime</p>
-<p>-$ random : Random</p>
-<p>+$ «readonly» ACCOUNT_TYPE : Dictionary&lt;AccountType,
-string&gt;</p>
-</blockquote></td>
-</tr>
-<tr class="odd">
-<td><strong>Properties</strong></td>
-</tr>
-<tr class="even">
-<td><blockquote>
-<p>+$ «computed prop» Time : DayTime</p>
-<p>+$ «computed prop» Now : DayTime</p>
-</blockquote></td>
-</tr>
-<tr class="odd">
-<td><strong>Methods</strong></td>
-</tr>
-<tr class="even">
-<td></td>
-</tr>
-</tbody>
-</table>
-
-### Properties:
-
-There are three properties.
-
-1.  **\_time** – this private class variable is of type **DayTime** that
-    store the time of this object. It is initialized (with argument
-    1_048_000_000) at declaration. It is mutated (changed) whenever
-    either of the properties is accessed.
-
-2.  **random** – this private class variable is of type **Random**
-    storing the time of this object. It is initialized (with argument
-    1_048_000_000) at declaration. It is mutated (changed) whenever
-    either of the properties is accessed.
-
-3.  **ACCOUNT_TYPE** – this private class variable is of type
-    **Dictionary\<AccountType, string\>**. It serves as a lookup table
-    to match an account type with a particular prefix. It is initialized
-    (code is given in the appendix) at declaration.
-
-### Properties:
-
-There are two properties, both of which are computed.
-
-1.  **Time** – this public class variable is of type **DayTime**. It
-    adds a random value to the internal field **\_time** and then
-    returns it.
-
-2.  **Now** – this public class variable is of type **DayTime**. It adds
-    zero to the internal field **\_time** and then returns it.
-
-### Methods:
-
-There are no explicitly defined methods.
-
-You do not have to code this class. Just copy the code statements from
-the appendix of this document.
-
-## ITransaction interface
-
-You will implement the **ITransaction** Interface in Visual Studio. The
-three Account sub classes implement this interface.
-
-A short description of each class member is given below:
-
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>ITransaction</strong></p>
-<p>Interface</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Properties</strong></td>
-</tr>
-<tr class="even">
-<td></td>
-</tr>
-<tr class="odd">
-<td><strong>Methods</strong></td>
-</tr>
-<tr class="even">
-<td><blockquote>
-<p>Withdraw(amount : <strong>double</strong>, person :
-<strong>Person</strong>) : <strong><mark>void</mark></strong></p>
-<p>Deposit(amount : <strong>double</strong>, person :
-<strong>Person</strong>) : <strong><mark>void</mark></strong></p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
-
-### Properties:
-
-There are no properties.
-
-### Methods:
-
-1.  **void Withdraw(<span class="mark">double</span> amount, Person
-    person).**
-
-2.  **void Deposit(double amount, Person person).**
-
-## AccountException class
-
-You will implement the AccountException Class in Visual Studio. This
-inherits from the **Exception** Class to provide a custom exception
-object for this application. It consists of a single a constructor:
-
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>AccountException</strong></p>
-<p>Class</p>
-<p>→ Exception</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Fields</strong></td>
-</tr>
-<tr class="even">
-<td></td>
-</tr>
-<tr class="odd">
-<td><strong>Properties</strong></td>
-</tr>
-<tr class="even">
-<td></td>
-</tr>
-<tr class="odd">
-<td><strong>Methods</strong></td>
-</tr>
-<tr class="even">
-<td><blockquote>
-<p>+ «Constructor» AccountException(reason : ExceptionType)</p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
-
-### Fields:
-
-There are no fields
-
-### Properties:
-
-There are no properties
-
-### Constructor:
-
-1.  **public AccountException(ExceptionType reason )**– this public
-    constructor invokes the base constructor with an appropriate
-    argument. The base constructer argument is obtain by calling the
-    ToString() of the argument. \[You are sending the argument of the
-    child constructor to the parent constructor.\]
-
-### Methods:
-
-There are no methods.
-
-2.  
-
-## LoginEventArgs class
-
-You will implement the **LoginEventArgs** Class in Visual Studio. This
-inherits from the **EventArgs** Class to provide a custom object for
-this application. It consists of two properties and a single a
-constructor:
-
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>LoginEventArgs</strong></p>
-<p>Class</p>
-<p>→ EventArgs</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Fields</strong></td>
-</tr>
-<tr class="even">
-<td></td>
-</tr>
-<tr class="odd">
-<td><strong>Properties</strong></td>
-</tr>
-<tr class="even">
-<td><blockquote>
-<p>+ «prop, no set» PersonName : string</p>
-<p>+ «prop, no set» Success : bool</p>
-</blockquote></td>
-</tr>
-<tr class="odd">
-<td><strong>Methods</strong></td>
-</tr>
-<tr class="even">
-<td><blockquote>
-<p>+ «Constructor» LoginEventArgs(</p>
-<p>personName : string,</p>
-<p>success : bool)</p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
-
-### Fields:
-
-There are no fields
-
-### Properties:
-
-There are two public properties, with no accompanying setters.
-
-### Constructors:
-
-1.  **public LoginEventArgs(string name, bool success)** – this public
-    constructor takes a string and a bool argument and does the
-    following:
-
-    1.  Invokes the base constructor
-
-    2.  Assigns the arguments to the appropriate properties.
-
-### Methods:
-
-There are no explicitly defined methods.
-
-3.  
-
-## TransactionEventArgs class
-
-You will implement the **TransactionEventArgs** Class in Visual Studio.
-This inherits from the **LoginEventArgs** Class to provide a custom
-object for this application. It consists of a single property and a
-single a constructor:
-
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>TransactionEventArgs</strong></p>
-<p>Class</p>
-<p>→ LoginEventArgs</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Fields</strong></td>
-</tr>
-<tr class="even">
-<td></td>
-</tr>
-<tr class="odd">
-<td><strong>Properties</strong></td>
-</tr>
-<tr class="even">
-<td><blockquote>
-<p>+ «prop, no set» Amount : double</p>
-</blockquote></td>
-</tr>
-<tr class="odd">
-<td><strong>Methods</strong></td>
-</tr>
-<tr class="even">
-<td><blockquote>
-<p>+ «Constructor» TransactionEventArgs(</p>
-<p>personName : string,</p>
-<p>amount : double,</p>
-<p>success : bool)</p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
-
-### Fields:
-
-There are no fields
-
-### Properties:
-
-There is one explicitly defined public property, with no accompanying
-setters.
-
-### Constructors:
-
-1.  **public TransactionEventArgs(string name, double amount, bool
-    success)** – this public constructor takes a string, a double and a
-    bool argument and does the following:
-
-    1.  Invokes the base constructor with the appropriate arguments.
-
-    2.  Assigns the middle argument to the appropriate property.
-
-### Methods:
-
-There are no explicitly defined methods.
-
-2.  
 
 ## Transaction struct
 
@@ -621,6 +200,487 @@ There are no properties.
     calculates the year, month, day, hour, and remaining minutes from
     the private minutes field. \[See the output for clues for this
     method.\]
+
+
+## ITransaction interface
+
+You will implement the **ITransaction** Interface in Visual Studio. The
+three Account sub classes implement this interface.
+
+A short description of each class member is given below:
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>ITransaction</strong></p>
+<p>Interface</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Properties</strong></td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Methods</strong></td>
+</tr>
+<tr class="even">
+<td><blockquote>
+<p>Withdraw(amount : <strong>double</strong>, person :
+<strong>Person</strong>) : <strong><mark>void</mark></strong></p>
+<p>Deposit(amount : <strong>double</strong>, person :
+<strong>Person</strong>) : <strong><mark>void</mark></strong></p>
+</blockquote></td>
+</tr>
+</tbody>
+</table>
+
+### Properties:
+
+There are no properties.
+
+### Methods:
+
+1.  **void Withdraw(<span class="mark">double</span> amount, Person
+    person).**
+
+2.  **void Deposit(double amount, Person person).**
+
+
+## ExceptionType enum
+
+You will implement this enum in Visual Studio. There are seven members:
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>ExceptionType</strong></p>
+<p>enum</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Constants</strong></td>
+</tr>
+<tr class="even">
+<td><blockquote>
+<p>ACCOUNT_DOES_NOT_EXIST,</p>
+<p>CREDIT_LIMIT_HAS_BEEN_EXCEEDED,</p>
+<p>NAME_NOT_ASSOCIATED_WITH_ACCOUNT,</p>
+<p>NO_OVERDRAFT,</p>
+<p>PASSWORD_INCORRECT,</p>
+<p>USER_DOES_NOT_EXIST,</p>
+<p>USER_NOT_LOGGED_IN</p>
+</blockquote></td>
+</tr>
+</tbody>
+</table>
+
+The members are self-explanatory.
+
+
+## AccountType enum
+
+You will implement this enum in Visual Studio. There are three members:
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>AccountType</strong></p>
+<p>enum</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Constants</strong></td>
+</tr>
+<tr class="even">
+<td><blockquote>
+<p>Checking,</p>
+<p>Saving,</p>
+<p>Visa</p>
+</blockquote></td>
+</tr>
+</tbody>
+</table>
+
+The members are self-explanatory.
+
+
+
+## Utils class
+
+\[The implementation for this class is given in the appendix. Create a
+class called Utls and copy and past the statements into the appropriate
+part of the file\]
+
+You will implement the Utils class in Visual Studio. This class is
+comprised of three fields and provides two static properties. It
+simulates the passage of time. Each time the **Time** property is
+accessed, it increases the internal field by a random amount. It is used
+to time stamped all banking events.
+
+A short description of each class member is given below:
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>Utils</strong></p>
+<p><strong>Static class</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Fields</strong></td>
+</tr>
+<tr class="even">
+<td><blockquote>
+<p>-$ _time : DayTime</p>
+<p>-$ random : Random</p>
+<p>+$ «readonly» ACCOUNT_TYPE : Dictionary&lt;AccountType,
+string&gt;</p>
+</blockquote></td>
+</tr>
+<tr class="odd">
+<td><strong>Properties</strong></td>
+</tr>
+<tr class="even">
+<td><blockquote>
+<p>+$ «computed prop» Time : DayTime</p>
+<p>+$ «computed prop» Now : DayTime</p>
+</blockquote></td>
+</tr>
+<tr class="odd">
+<td><strong>Methods</strong></td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+</tbody>
+</table>
+
+``` cs
+//this class depends of the implementation of the following types:
+//DayTime struct and AccountType enum
+public static class Utils 
+{
+    static DayTime _time = new DayTime(1_048_000_000);
+    static Random random = new Random();
+    public static DayTime Time
+    {
+        get => _time += random.Next(1000);
+    }
+    public static DayTime Now
+    {
+        get => _time += 0;
+    }
+
+    public readonly static Dictionary<AccountType, string> ACCOUNT_TYPES = 
+        new Dictionary<AccountType, string>
+    {
+        { AccountType.Checking , "CK" },
+        { AccountType.Saving , "SV" },
+        { AccountType.Visa , "VS" }
+    };
+
+}
+
+```
+
+### Properties:
+
+There are three properties.
+
+1.  **\_time** – this private class variable is of type **DayTime** that
+    store the time of this object. It is initialized (with argument
+    1_048_000_000) at declaration. It is mutated (changed) whenever
+    either of the properties is accessed.
+
+2.  **random** – this private class variable is of type **Random**
+    storing the time of this object. It is initialized (with argument
+    1_048_000_000) at declaration. It is mutated (changed) whenever
+    either of the properties is accessed.
+
+3.  **ACCOUNT_TYPE** – this private class variable is of type
+    **Dictionary\<AccountType, string\>**. It serves as a lookup table
+    to match an account type with a particular prefix. It is initialized
+    (code is given in the appendix) at declaration.
+
+### Properties:
+
+There are two properties, both of which are computed.
+
+1.  **Time** – this public class variable is of type **DayTime**. It
+    adds a random value to the internal field **\_time** and then
+    returns it.
+
+2.  **Now** – this public class variable is of type **DayTime**. It adds
+    zero to the internal field **\_time** and then returns it.
+
+### Methods:
+
+There are no explicitly defined methods.
+
+You do not have to code this class. Just copy the code statements from
+the appendix of this document.
+
+
+## Appendix
+
+Copy the following statements to your Utils class
+
+``` cs
+//this class depends of the implementation of the following types:
+//DayTime struct and AccountType enum
+public static class Utils 
+{
+    static DayTime _time = new DayTime(1_048_000_000);
+    static Random random = new Random();
+    public static DayTime Time
+    {
+        get => _time += random.Next(1000);
+    }
+    public static DayTime Now
+    {
+        get => _time += 0;
+    }
+
+    public readonly static Dictionary<AccountType, string> ACCOUNT_TYPES = 
+        new Dictionary<AccountType, string>
+    {
+        { AccountType.Checking , "CK" },
+        { AccountType.Saving , "SV" },
+        { AccountType.Visa , "VS" }
+    };
+
+}
+
+```
+
+
+## AccountException class
+
+You will implement the AccountException Class in Visual Studio. This
+inherits from the **Exception** Class to provide a custom exception
+object for this application. It consists of a single a constructor:
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>AccountException</strong></p>
+<p>Class</p>
+<p>→ Exception</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Fields</strong></td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Properties</strong></td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Methods</strong></td>
+</tr>
+<tr class="even">
+<td><blockquote>
+<p>+ «Constructor» AccountException(reason : ExceptionType)</p>
+</blockquote></td>
+</tr>
+</tbody>
+</table>
+
+### Fields:
+
+There are no fields
+
+### Properties:
+
+There are no properties
+
+### Constructor:
+
+1.  **public AccountException(ExceptionType reason )**– this public
+    constructor invokes the base constructor with an appropriate
+    argument. The base constructer argument is obtain by calling the
+    ToString() of the argument. \[You are sending the argument of the
+    child constructor to the parent constructor.\]
+
+### Methods:
+
+There are no methods.
+
+2.  
+
+
+## LoginEventArgs class
+
+You will implement the **LoginEventArgs** Class in Visual Studio. This
+inherits from the **EventArgs** Class to provide a custom object for
+this application. It consists of two properties and a single a
+constructor:
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>LoginEventArgs</strong></p>
+<p>Class</p>
+<p>→ EventArgs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Fields</strong></td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Properties</strong></td>
+</tr>
+<tr class="even">
+<td><blockquote>
+<p>+ «prop, no set» PersonName : string</p>
+<p>+ «prop, no set» Success : bool</p>
+</blockquote></td>
+</tr>
+<tr class="odd">
+<td><strong>Methods</strong></td>
+</tr>
+<tr class="even">
+<td><blockquote>
+<p>+ «Constructor» LoginEventArgs(</p>
+<p>personName : string,</p>
+<p>success : bool)</p>
+</blockquote></td>
+</tr>
+</tbody>
+</table>
+
+### Fields:
+
+There are no fields
+
+### Properties:
+
+There are two public properties, with no accompanying setters.
+
+### Constructors:
+
+1.  **public LoginEventArgs(string name, bool success)** – this public
+    constructor takes a string and a bool argument and does the
+    following:
+
+    1.  Invokes the base constructor
+
+    2.  Assigns the arguments to the appropriate properties.
+
+### Methods:
+
+There are no explicitly defined methods.
+
+3.  
+
+
+## TransactionEventArgs class
+
+You will implement the **TransactionEventArgs** Class in Visual Studio.
+This inherits from the **LoginEventArgs** Class to provide a custom
+object for this application. It consists of a single property and a
+single a constructor:
+
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><p><strong>TransactionEventArgs</strong></p>
+<p>Class</p>
+<p>→ LoginEventArgs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Fields</strong></td>
+</tr>
+<tr class="even">
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Properties</strong></td>
+</tr>
+<tr class="even">
+<td><blockquote>
+<p>+ «prop, no set» Amount : double</p>
+</blockquote></td>
+</tr>
+<tr class="odd">
+<td><strong>Methods</strong></td>
+</tr>
+<tr class="even">
+<td><blockquote>
+<p>+ «Constructor» TransactionEventArgs(</p>
+<p>personName : string,</p>
+<p>amount : double,</p>
+<p>success : bool)</p>
+</blockquote></td>
+</tr>
+</tbody>
+</table>
+
+### Fields:
+
+There are no fields
+
+### Properties:
+
+There is one explicitly defined public property, with no accompanying
+setters.
+
+### Constructors:
+
+1.  **public TransactionEventArgs(string name, double amount, bool
+    success)** – this public constructor takes a string, a double and a
+    bool argument and does the following:
+
+    1.  Invokes the base constructor with the appropriate arguments.
+
+    2.  Assigns the middle argument to the appropriate property.
+
+### Methods:
+
+There are no explicitly defined methods.
+
+2.  
+
+
 
 ## Logger class
 
@@ -1777,7 +1837,6 @@ number = "SV-100007";
 AddUserToAccount(number, "Patrick");
 
 AddUserToAccount(number, "Hao");
-
 ```
 
 2.  **<span class="mark">public static void PrintAccounts( )</span>** –
@@ -2134,548 +2193,289 @@ Logger.ShowTransactionEvents();
 
 Use the following code in your test harness.
 
-``` txt
 All acounts:
 
-[VS-100000, VS-100000 Narendra Not logged in, Ilia Not logged in, Mehrdad Not logged in $0.00 - transactions (0)
-
-]
-
-[VS-100001, VS-100001 Vijay Not logged in, Arben Not logged in, Patrick Not logged in $150.00 - transactions (0)
-
-]
-
-[SV-100002, SV-100002 Yin Not logged in, Hao Not logged in, Jake Not logged in $5,000.00 - transactions (0)
-
-]
-
-[SV-100003, SV-100003 Mayy Not logged in, Nicoletta Not logged in $0.00 - transactions (0)
-
-]
-
-[CK-100004, CK-100004 Mehrdad Not logged in, Arben Not logged in, Yin Not logged in $2,000.00 - transactions (0)
-
-]
-
-[CK-100005, CK-100005 Jake Not logged in, Nicoletta Not logged in $1,500.00 - transactions (0)
-
-]
-
-[VS-100006, VS-100006 Ilia Not logged in, Vijay Not logged in $50.00 - transactions (0)
-
-]
-
-[SV-100007, SV-100007 Patrick Not logged in, Hao Not logged in $1,000.00 - transactions (0)
-
-]
+``` txt
+All acounts:
+[VS-100000, VS-100000 Narendra  Not logged in, Ilia  Not logged in, Mehrdad  Not logged in $0.00 - transactions (0)
+   ]
+[VS-100001, VS-100001 Vijay  Not logged in, Arben  Not logged in, Patrick  Not logged in $150.00 - transactions (0)
+   ]
+[SV-100002, SV-100002 Yin  Not logged in, Hao  Not logged in, Jake  Not logged in $5,000.00 - transactions (0)
+   ]
+[SV-100003, SV-100003 Mayy  Not logged in, Nicoletta  Not logged in $0.00 - transactions (0)
+   ]
+[CK-100004, CK-100004 Mehrdad  Not logged in, Arben  Not logged in, Yin  Not logged in $2,000.00 - transactions (0)
+   ]
+[CK-100005, CK-100005 Jake  Not logged in, Nicoletta  Not logged in $1,500.00 - transactions (0)
+   ]
+[VS-100006, VS-100006 Ilia  Not logged in, Vijay  Not logged in $50.00 - transactions (0)
+   ]
+[SV-100007, SV-100007 Patrick  Not logged in, Hao  Not logged in $1,000.00 - transactions (0)
+   ]
 
 All Users:
-
-[Narendra, Narendra Not logged in]
-
-[Ilia, Ilia Not logged in]
-
-[Mehrdad, Mehrdad Not logged in]
-
-[Vijay, Vijay Not logged in]
-
-[Arben, Arben Not logged in]
-
-[Patrick, Patrick Not logged in]
-
-[Yin, Yin Not logged in]
-
-[Hao, Hao Not logged in]
-
-[Jake, Jake Not logged in]
-
-[Mayy, Mayy Not logged in]
-
-[Nicoletta, Nicoletta Not logged in]
-
+[Narendra, Narendra  Not logged in]
+[Ilia, Ilia  Not logged in]
+[Mehrdad, Mehrdad  Not logged in]
+[Vijay, Vijay  Not logged in]
+[Arben, Arben  Not logged in]
+[Patrick, Patrick  Not logged in]
+[Yin, Yin  Not logged in]
+[Hao, Hao  Not logged in]
+[Jake, Jake  Not logged in]
+[Mayy, Mayy  Not logged in]
+[Nicoletta, Nicoletta  Not logged in]
 VS-100000 Narendra Logged in, Ilia Logged in, Mehrdad Logged in $1,621.00 - transactions (6)
-
-VS-100000 $1,500.00 deposited by Narendra on 2021-08-18 05:10
-
-VS-100000 $200.00 withdrawn by Ilia on 2021-08-19 09:11
-
-VS-100000 $25.00 withdrawn by Mehrdad on 2021-08-20 01:39
-
-VS-100000 $15.00 withdrawn by Narendra on 2021-08-22 05:21
-
-VS-100000 $39.00 withdrawn by Ilia on 2021-08-24 18:17
-
-VS-100000 $400.00 deposited by Narendra on 2021-08-25 21:58
-
+   VS-100000 $1,500.00 deposited by Narendra on 2021-08-18 05:10
+   VS-100000 $200.00 withdrawn by Ilia on 2021-08-19 09:11
+   VS-100000 $25.00 withdrawn by Mehrdad on 2021-08-20 01:39
+   VS-100000 $15.00 withdrawn by Narendra on 2021-08-22 05:21
+   VS-100000 $39.00 withdrawn by Ilia on 2021-08-24 18:17
+   VS-100000 $400.00 deposited by Narendra on 2021-08-25 21:58
 VS-100001 Vijay Logged in, Arben Logged in, Patrick Logged in $590.00 - transactions (4)
-
-VS-100001 $500.00 deposited by Narendra on 2021-08-27 00:39
-
-VS-100001 $25.00 withdrawn by Vijay on 2021-08-28 23:55
-
-VS-100001 $20.00 withdrawn by Arben on 2021-09-01 09:51
-
-VS-100001 $15.00 withdrawn by Patrick on 2021-09-03 03:46
-
+   VS-100001 $500.00 deposited by Narendra on 2021-08-27 00:39
+   VS-100001 $25.00 withdrawn by Vijay on 2021-08-28 23:55
+   VS-100001 $20.00 withdrawn by Arben on 2021-09-01 09:51
+   VS-100001 $15.00 withdrawn by Patrick on 2021-09-03 03:46
 SV-100002 Yin Logged in, Hao Logged in, Jake Logged in $4,505.99 - transactions (4)
-
-SV-100002 $300.00 withdrawn by Yin on 2021-09-04 20:23
-
-SV-100002 $32.90 withdrawn by Yin on 2021-09-05 17:11
-
-SV-100002 $50.00 withdrawn by Hao on 2021-09-07 08:54
-
-SV-100002 $111.11 withdrawn by Jake on 2021-09-08 16:16
-
-SV-100003 Mayy Not logged in, Nicoletta Logged in $271.79 - transactions (4)
-
-SV-100003 $300.00 deposited by Vijay on 2021-09-10 18:14
-
-SV-100003 $32.90 deposited by Mehrdad on 2021-09-12 20:20
-
-SV-100003 $50.00 deposited by Patrick on 2021-09-13 06:52
-
-SV-100003 $111.11 withdrawn by Nicoletta on 2021-09-15 00:51
-
+   SV-100002 $300.00 withdrawn by Yin on 2021-09-04 20:23
+   SV-100002 $32.90 withdrawn by Yin on 2021-09-05 17:11
+   SV-100002 $50.00 withdrawn by Hao on 2021-09-07 08:54
+   SV-100002 $111.11 withdrawn by Jake on 2021-09-08 16:16
+SV-100003 Mayy  Not logged in, Nicoletta Logged in $271.79 - transactions (4)
+   SV-100003 $300.00 deposited by Vijay on 2021-09-10 18:14
+   SV-100003 $32.90 deposited by Mehrdad on 2021-09-12 20:20
+   SV-100003 $50.00 deposited by Patrick on 2021-09-13 06:52
+   SV-100003 $111.11 withdrawn by Nicoletta on 2021-09-15 00:51
 CK-100004 Mehrdad Logged in, Arben Logged in, Yin Logged in $728.77 - transactions (6)
-
-CK-100004 $33.33 deposited by Hao on 2021-09-16 10:40
-
-CK-100004 $40.44 deposited by Hao on 2021-09-18 03:03
-
-CK-100004 $150.00 withdrawn by Mehrdad on 2021-09-20 17:27
-
-CK-100004 $200.00 withdrawn by Arben on 2021-09-22 19:01
-
-CK-100004 $645.00 withdrawn by Yin on 2021-09-25 02:44
-
-CK-100004 $350.00 withdrawn by Yin on 2021-09-27 10:29
-
+   CK-100004 $33.33 deposited by Hao on 2021-09-16 10:40
+   CK-100004 $40.44 deposited by Hao on 2021-09-18 03:03
+   CK-100004 $150.00 withdrawn by Mehrdad on 2021-09-20 17:27
+   CK-100004 $200.00 withdrawn by Arben on 2021-09-22 19:01
+   CK-100004 $645.00 withdrawn by Yin on 2021-09-25 02:44
+   CK-100004 $350.00 withdrawn by Yin on 2021-09-27 10:29
 CK-100005 Jake Logged in, Nicoletta Logged in -$871.23 - transactions (6)
-
-CK-100005 $33.33 deposited by Jake on 2021-09-28 06:51
-
-CK-100005 $40.44 deposited by Hao on 2021-09-29 07:34
-
-CK-100005 $450.00 withdrawn by Nicoletta on 2021-09-30 06:07
-
-CK-100005 $500.00 withdrawn by Jake on 2021-10-01 13:11
-
-CK-100005 $645.00 withdrawn by Nicoletta on 2021-10-02 12:47
-
-CK-100005 $850.00 withdrawn by Nicoletta on 2021-10-03 21:54
-
+   CK-100005 $33.33 deposited by Jake on 2021-09-28 06:51
+   CK-100005 $40.44 deposited by Hao on 2021-09-29 07:34
+   CK-100005 $450.00 withdrawn by Nicoletta on 2021-09-30 06:07
+   CK-100005 $500.00 withdrawn by Jake on 2021-10-01 13:11
+   CK-100005 $645.00 withdrawn by Nicoletta on 2021-10-02 12:47
+   CK-100005 $850.00 withdrawn by Nicoletta on 2021-10-03 21:54
 VS-100006 Ilia Logged in, Vijay Logged in $705.00 - transactions (4)
-
-VS-100006 $700.00 deposited by Narendra on 2021-10-05 15:16
-
-VS-100006 $20.00 withdrawn by Vijay on 2021-10-06 05:47
-
-VS-100006 $10.00 withdrawn by Ilia on 2021-10-07 19:54
-
-VS-100006 $15.00 withdrawn by Ilia on 2021-10-09 08:31
-
+   VS-100006 $700.00 deposited by Narendra on 2021-10-05 15:16
+   VS-100006 $20.00 withdrawn by Vijay on 2021-10-06 05:47
+   VS-100006 $10.00 withdrawn by Ilia on 2021-10-07 19:54
+   VS-100006 $15.00 withdrawn by Ilia on 2021-10-09 08:31
 SV-100007 Patrick Logged in, Hao Logged in $1,271.79 - transactions (4)
+   SV-100007 $300.00 deposited by Vijay on 2021-10-10 06:31
+   SV-100007 $32.90 deposited by Mehrdad on 2021-10-11 13:55
+   SV-100007 $50.00 deposited by Patrick on 2021-10-12 14:04
+   SV-100007 $111.11 withdrawn by Hao on 2021-10-13 11:58
 
-SV-100007 $300.00 deposited by Vijay on 2021-10-10 06:31
-
-SV-100007 $32.90 deposited by Mehrdad on 2021-10-11 13:55
-
-SV-100007 $50.00 deposited by Patrick on 2021-10-12 14:04
-
-SV-100007 $111.11 withdrawn by Hao on 2021-10-13 11:58
 
 Exceptions:
-
 PASSWORD_INCORRECT
-
 USER_NOT_LOGGED_IN
-
 NAME_NOT_ASSOCIATED_WITH_ACCOUNT
-
 NAME_NOT_ASSOCIATED_WITH_ACCOUNT
-
 NAME_NOT_ASSOCIATED_WITH_ACCOUNT
-
 ACCOUNT_DOES_NOT_EXIST
-
 USER_DOES_NOT_EXIST
 
+
 All transactions
-
 VS-100000 $1,500.00 deposited by Narendra on 2021-08-18 05:10
-
 VS-100000 $200.00 withdrawn by Ilia on 2021-08-19 09:11
-
 VS-100000 $25.00 withdrawn by Mehrdad on 2021-08-20 01:39
-
 VS-100000 $15.00 withdrawn by Narendra on 2021-08-22 05:21
-
 VS-100000 $39.00 withdrawn by Ilia on 2021-08-24 18:17
-
 VS-100000 $400.00 deposited by Narendra on 2021-08-25 21:58
-
 VS-100001 $500.00 deposited by Narendra on 2021-08-27 00:39
-
 VS-100001 $25.00 withdrawn by Vijay on 2021-08-28 23:55
-
 VS-100001 $20.00 withdrawn by Arben on 2021-09-01 09:51
-
 VS-100001 $15.00 withdrawn by Patrick on 2021-09-03 03:46
-
 SV-100002 $300.00 withdrawn by Yin on 2021-09-04 20:23
-
 SV-100002 $32.90 withdrawn by Yin on 2021-09-05 17:11
-
 SV-100002 $50.00 withdrawn by Hao on 2021-09-07 08:54
-
 SV-100002 $111.11 withdrawn by Jake on 2021-09-08 16:16
-
 SV-100003 $300.00 deposited by Vijay on 2021-09-10 18:14
-
 SV-100003 $32.90 deposited by Mehrdad on 2021-09-12 20:20
-
 SV-100003 $50.00 deposited by Patrick on 2021-09-13 06:52
-
 SV-100003 $111.11 withdrawn by Nicoletta on 2021-09-15 00:51
-
 CK-100004 $33.33 deposited by Hao on 2021-09-16 10:40
-
 CK-100004 $40.44 deposited by Hao on 2021-09-18 03:03
-
 CK-100004 $150.00 withdrawn by Mehrdad on 2021-09-20 17:27
-
 CK-100004 $200.00 withdrawn by Arben on 2021-09-22 19:01
-
 CK-100004 $645.00 withdrawn by Yin on 2021-09-25 02:44
-
 CK-100004 $350.00 withdrawn by Yin on 2021-09-27 10:29
-
 CK-100005 $33.33 deposited by Jake on 2021-09-28 06:51
-
 CK-100005 $40.44 deposited by Hao on 2021-09-29 07:34
-
 CK-100005 $450.00 withdrawn by Nicoletta on 2021-09-30 06:07
-
 CK-100005 $500.00 withdrawn by Jake on 2021-10-01 13:11
-
 CK-100005 $645.00 withdrawn by Nicoletta on 2021-10-02 12:47
-
 CK-100005 $850.00 withdrawn by Nicoletta on 2021-10-03 21:54
-
 VS-100006 $700.00 deposited by Narendra on 2021-10-05 15:16
-
 VS-100006 $20.00 withdrawn by Vijay on 2021-10-06 05:47
-
 VS-100006 $10.00 withdrawn by Ilia on 2021-10-07 19:54
-
 VS-100006 $15.00 withdrawn by Ilia on 2021-10-09 08:31
-
 SV-100007 $300.00 deposited by Vijay on 2021-10-10 06:31
-
 SV-100007 $32.90 deposited by Mehrdad on 2021-10-11 13:55
-
 SV-100007 $50.00 deposited by Patrick on 2021-10-12 14:04
-
 SV-100007 $111.11 withdrawn by Hao on 2021-10-13 11:58
 
 Before PrepareMonthlyReport()
-
 VS-100000 Narendra Logged in, Ilia Logged in, Mehrdad Logged in $1,621.00 - transactions (6)
-
-VS-100000 $1,500.00 deposited by Narendra on 2021-08-18 05:10
-
-VS-100000 $200.00 withdrawn by Ilia on 2021-08-19 09:11
-
-VS-100000 $25.00 withdrawn by Mehrdad on 2021-08-20 01:39
-
-VS-100000 $15.00 withdrawn by Narendra on 2021-08-22 05:21
-
-VS-100000 $39.00 withdrawn by Ilia on 2021-08-24 18:17
-
-VS-100000 $400.00 deposited by Narendra on 2021-08-25 21:58
+   VS-100000 $1,500.00 deposited by Narendra on 2021-08-18 05:10
+   VS-100000 $200.00 withdrawn by Ilia on 2021-08-19 09:11
+   VS-100000 $25.00 withdrawn by Mehrdad on 2021-08-20 01:39
+   VS-100000 $15.00 withdrawn by Narendra on 2021-08-22 05:21
+   VS-100000 $39.00 withdrawn by Ilia on 2021-08-24 18:17
+   VS-100000 $400.00 deposited by Narendra on 2021-08-25 21:58
 
 After PrepareMonthlyReport()
-
 VS-100000 Narendra Logged in, Ilia Logged in, Mehrdad Logged in $1,621.00 - transactions (0)
 
+
 Before PrepareMonthlyReport()
-
-VS-100001 Vijay Not logged in, Arben Logged in, Patrick Logged in $590.00 - transactions (4)
-
-VS-100001 $500.00 deposited by Narendra on 2021-08-27 00:39
-
-VS-100001 $25.00 withdrawn by Vijay on 2021-08-28 23:55
-
-VS-100001 $20.00 withdrawn by Arben on 2021-09-01 09:51
-
-VS-100001 $15.00 withdrawn by Patrick on 2021-09-03 03:46
+VS-100001 Vijay  Not logged in, Arben Logged in, Patrick Logged in $590.00 - transactions (4)
+   VS-100001 $500.00 deposited by Narendra on 2021-08-27 00:39
+   VS-100001 $25.00 withdrawn by Vijay on 2021-08-28 23:55
+   VS-100001 $20.00 withdrawn by Arben on 2021-09-01 09:51
+   VS-100001 $15.00 withdrawn by Patrick on 2021-09-03 03:46
 
 After PrepareMonthlyReport()
+VS-100001 Vijay  Not logged in, Arben Logged in, Patrick Logged in $619.92 - transactions (0)
 
-VS-100001 Vijay Not logged in, Arben Logged in, Patrick Logged in $619.92 - transactions (0)
 
 Before PrepareMonthlyReport()
-
-SV-100002 Yin Logged in, Hao Logged in, Jake Not logged in $4,505.99 - transactions (4)
-
-SV-100002 $300.00 withdrawn by Yin on 2021-09-04 20:23
-
-SV-100002 $32.90 withdrawn by Yin on 2021-09-05 17:11
-
-SV-100002 $50.00 withdrawn by Hao on 2021-09-07 08:54
-
-SV-100002 $111.11 withdrawn by Jake on 2021-09-08 16:16
+SV-100002 Yin Logged in, Hao Logged in, Jake  Not logged in $4,505.99 - transactions (4)
+   SV-100002 $300.00 withdrawn by Yin on 2021-09-04 20:23
+   SV-100002 $32.90 withdrawn by Yin on 2021-09-05 17:11
+   SV-100002 $50.00 withdrawn by Hao on 2021-09-07 08:54
+   SV-100002 $111.11 withdrawn by Jake on 2021-09-08 16:16
 
 After PrepareMonthlyReport()
+SV-100002 Yin Logged in, Hao Logged in, Jake  Not logged in $4,573.38 - transactions (0)
 
-SV-100002 Yin Logged in, Hao Logged in, Jake Not logged in $4,573.38 - transactions (0)
 
 Before PrepareMonthlyReport()
-
-SV-100003 Mayy Not logged in, Nicoletta Logged in $271.79 - transactions (4)
-
-SV-100003 $300.00 deposited by Vijay on 2021-09-10 18:14
-
-SV-100003 $32.90 deposited by Mehrdad on 2021-09-12 20:20
-
-SV-100003 $50.00 deposited by Patrick on 2021-09-13 06:52
-
-SV-100003 $111.11 withdrawn by Nicoletta on 2021-09-15 00:51
+SV-100003 Mayy  Not logged in, Nicoletta Logged in $271.79 - transactions (4)
+   SV-100003 $300.00 deposited by Vijay on 2021-09-10 18:14
+   SV-100003 $32.90 deposited by Mehrdad on 2021-09-12 20:20
+   SV-100003 $50.00 deposited by Patrick on 2021-09-13 06:52
+   SV-100003 $111.11 withdrawn by Nicoletta on 2021-09-15 00:51
 
 After PrepareMonthlyReport()
+SV-100003 Mayy  Not logged in, Nicoletta Logged in $271.59 - transactions (0)
 
-SV-100003 Mayy Not logged in, Nicoletta Logged in $271.59 - transactions (0)
 
 Before PrepareMonthlyReport()
-
 CK-100004 Mehrdad Logged in, Arben Logged in, Yin Logged in $728.77 - transactions (6)
-
-CK-100004 $33.33 deposited by Hao on 2021-09-16 10:40
-
-CK-100004 $40.44 deposited by Hao on 2021-09-18 03:03
-
-CK-100004 $150.00 withdrawn by Mehrdad on 2021-09-20 17:27
-
-CK-100004 $200.00 withdrawn by Arben on 2021-09-22 19:01
-
-CK-100004 $645.00 withdrawn by Yin on 2021-09-25 02:44
-
-CK-100004 $350.00 withdrawn by Yin on 2021-09-27 10:29
+   CK-100004 $33.33 deposited by Hao on 2021-09-16 10:40
+   CK-100004 $40.44 deposited by Hao on 2021-09-18 03:03
+   CK-100004 $150.00 withdrawn by Mehrdad on 2021-09-20 17:27
+   CK-100004 $200.00 withdrawn by Arben on 2021-09-22 19:01
+   CK-100004 $645.00 withdrawn by Yin on 2021-09-25 02:44
+   CK-100004 $350.00 withdrawn by Yin on 2021-09-27 10:29
 
 After PrepareMonthlyReport()
-
 CK-100004 Mehrdad Logged in, Arben Logged in, Yin Logged in $732.11 - transactions (0)
 
+
 Before PrepareMonthlyReport()
-
-CK-100005 Jake Not logged in, Nicoletta Logged in -$871.23 - transactions (6)
-
-CK-100005 $33.33 deposited by Jake on 2021-09-28 06:51
-
-CK-100005 $40.44 deposited by Hao on 2021-09-29 07:34
-
-CK-100005 $450.00 withdrawn by Nicoletta on 2021-09-30 06:07
-
-CK-100005 $500.00 withdrawn by Jake on 2021-10-01 13:11
-
-CK-100005 $645.00 withdrawn by Nicoletta on 2021-10-02 12:47
-
-CK-100005 $850.00 withdrawn by Nicoletta on 2021-10-03 21:54
+CK-100005 Jake  Not logged in, Nicoletta Logged in -$871.23 - transactions (6)
+   CK-100005 $33.33 deposited by Jake on 2021-09-28 06:51
+   CK-100005 $40.44 deposited by Hao on 2021-09-29 07:34
+   CK-100005 $450.00 withdrawn by Nicoletta on 2021-09-30 06:07
+   CK-100005 $500.00 withdrawn by Jake on 2021-10-01 13:11
+   CK-100005 $645.00 withdrawn by Nicoletta on 2021-10-02 12:47
+   CK-100005 $850.00 withdrawn by Nicoletta on 2021-10-03 21:54
 
 After PrepareMonthlyReport()
+CK-100005 Jake  Not logged in, Nicoletta Logged in -$875.89 - transactions (0)
 
-CK-100005 Jake Not logged in, Nicoletta Logged in -$875.89 - transactions (0)
 
 Before PrepareMonthlyReport()
-
-VS-100006 Ilia Logged in, Vijay Not logged in $705.00 - transactions (4)
-
-VS-100006 $700.00 deposited by Narendra on 2021-10-05 15:16
-
-VS-100006 $20.00 withdrawn by Vijay on 2021-10-06 05:47
-
-VS-100006 $10.00 withdrawn by Ilia on 2021-10-07 19:54
-
-VS-100006 $15.00 withdrawn by Ilia on 2021-10-09 08:31
+VS-100006 Ilia Logged in, Vijay  Not logged in $705.00 - transactions (4)
+   VS-100006 $700.00 deposited by Narendra on 2021-10-05 15:16
+   VS-100006 $20.00 withdrawn by Vijay on 2021-10-06 05:47
+   VS-100006 $10.00 withdrawn by Ilia on 2021-10-07 19:54
+   VS-100006 $15.00 withdrawn by Ilia on 2021-10-09 08:31
 
 After PrepareMonthlyReport()
+VS-100006 Ilia Logged in, Vijay  Not logged in $714.98 - transactions (0)
 
-VS-100006 Ilia Logged in, Vijay Not logged in $714.98 - transactions (0)
 
 Before PrepareMonthlyReport()
-
 SV-100007 Patrick Logged in, Hao Logged in $1,271.79 - transactions (4)
-
-SV-100007 $300.00 deposited by Vijay on 2021-10-10 06:31
-
-SV-100007 $32.90 deposited by Mehrdad on 2021-10-11 13:55
-
-SV-100007 $50.00 deposited by Patrick on 2021-10-12 14:04
-
-SV-100007 $111.11 withdrawn by Hao on 2021-10-13 11:58
+   SV-100007 $300.00 deposited by Vijay on 2021-10-10 06:31
+   SV-100007 $32.90 deposited by Mehrdad on 2021-10-11 13:55
+   SV-100007 $50.00 deposited by Patrick on 2021-10-12 14:04
+   SV-100007 $111.11 withdrawn by Hao on 2021-10-13 11:58
 
 After PrepareMonthlyReport()
-
 SV-100007 Patrick Logged in, Hao Logged in $1,286.59 - transactions (0)
 
+
+
 Login events as of 2021-10-18 05:02
-
-1 Narendra logged in successfully on 2021-08-09 21:24
-
-2 Ilia logged in successfully on 2021-08-11 00:02
-
-3 Mehrdad logged in successfully on 2021-08-12 09:15
-
-4 Vijay logged in successfully on 2021-08-13 05:23
-
-5 Arben logged in successfully on 2021-08-13 15:16
-
-6 Patrick logged in successfully on 2021-08-14 09:14
-
-7 Yin logged in successfully on 2021-08-14 22:32
-
-8 Hao logged in successfully on 2021-08-15 12:40
-
-9 Nicoletta logged in successfully on 2021-08-15 20:23
-
+ 1 Narendra logged in successfully on 2021-08-09 21:24
+ 2 Ilia logged in successfully on 2021-08-11 00:02
+ 3 Mehrdad logged in successfully on 2021-08-12 09:15
+ 4 Vijay logged in successfully on 2021-08-13 05:23
+ 5 Arben logged in successfully on 2021-08-13 15:16
+ 6 Patrick logged in successfully on 2021-08-14 09:14
+ 7 Yin logged in successfully on 2021-08-14 22:32
+ 8 Hao logged in successfully on 2021-08-15 12:40
+ 9 Nicoletta logged in successfully on 2021-08-15 20:23
 10 Jake logged in successfully on 2021-08-16 16:08
-
 11 Jake logged in unsuccessfully on 2021-10-14 01:59
 
+
 Transaction events as of 2021-10-18 05:02
-
-1 Narendra deposit $1,500.00 successfully on 2021-08-17 07:05
-
-2 Ilia deposit $200.00 successfully on 2021-08-18 19:58
-
-3 Mehrdad deposit $25.00 successfully on 2021-08-19 12:26
-
-4 Narendra deposit $15.00 successfully on 2021-08-21 05:58
-
-5 Ilia deposit $39.00 successfully on 2021-08-23 14:17
-
-6 Narendra deposit $400.00 successfully on 2021-08-25 06:04
-
-7 Narendra deposit $500.00 successfully on 2021-08-26 03:11
-
-8 Vijay deposit $25.00 successfully on 2021-08-27 16:59
-
-9 Arben deposit $20.00 successfully on 2021-08-30 05:42
-
+ 1 Narendra deposit $1,500.00 successfully on 2021-08-17 07:05
+ 2 Ilia deposit $200.00 successfully on 2021-08-18 19:58
+ 3 Mehrdad deposit $25.00 successfully on 2021-08-19 12:26
+ 4 Narendra deposit $15.00 successfully on 2021-08-21 05:58
+ 5 Ilia deposit $39.00 successfully on 2021-08-23 14:17
+ 6 Narendra deposit $400.00 successfully on 2021-08-25 06:04
+ 7 Narendra deposit $500.00 successfully on 2021-08-26 03:11
+ 8 Vijay deposit $25.00 successfully on 2021-08-27 16:59
+ 9 Arben deposit $20.00 successfully on 2021-08-30 05:42
 10 Patrick deposit $15.00 successfully on 2021-09-01 22:08
-
 11 Yin deposit $300.00 successfully on 2021-09-04 13:01
-
 12 Yin deposit $32.90 successfully on 2021-09-05 11:14
-
 13 Hao deposit $50.00 successfully on 2021-09-06 07:43
-
 14 Jake deposit $111.11 successfully on 2021-09-07 12:20
-
 15 Vijay deposit $300.00 successfully on 2021-09-09 14:05
-
 16 Mehrdad deposit $32.90 successfully on 2021-09-11 16:50
-
 17 Patrick deposit $50.00 successfully on 2021-09-13 02:42
-
 18 Nicoletta deposit $111.11 successfully on 2021-09-13 23:30
-
 19 Hao deposit $33.33 successfully on 2021-09-16 08:38
-
 20 Hao deposit $40.44 successfully on 2021-09-17 01:40
-
 21 Mehrdad deposit $150.00 successfully on 2021-09-19 11:17
-
 22 Arben deposit $200.00 successfully on 2021-09-22 01:01
-
 23 Yin deposit $645.00 successfully on 2021-09-23 21:42
-
 24 Yin deposit $350.00 successfully on 2021-09-26 04:27
-
 25 Jake deposit $33.33 successfully on 2021-09-27 22:25
-
 26 Hao deposit $40.44 successfully on 2021-09-28 15:46
-
 27 Nicoletta deposit $450.00 successfully on 2021-09-30 04:37
-
 28 Jake deposit $500.00 successfully on 2021-09-30 17:15
-
 29 Nicoletta deposit $645.00 successfully on 2021-10-02 08:42
-
 30 Nicoletta deposit $850.00 successfully on 2021-10-02 22:48
-
 31 Narendra deposit $700.00 successfully on 2021-10-04 20:47
-
 32 Vijay deposit $20.00 successfully on 2021-10-05 21:04
-
 33 Ilia deposit $10.00 successfully on 2021-10-06 23:57
-
 34 Ilia deposit $15.00 successfully on 2021-10-08 06:25
-
 35 Vijay deposit $300.00 successfully on 2021-10-09 14:23
-
 36 Mehrdad deposit $32.90 successfully on 2021-10-11 05:38
-
 37 Patrick deposit $50.00 successfully on 2021-10-12 06:37
-
 38 Hao deposit $111.11 successfully on 2021-10-13 10:12
-
 39 Vijay deposit $12.50 unsuccessfully on 2021-10-15 10:24
-
 40 Narendra deposit $12.50 unsuccessfully on 2021-10-16 14:19
-
 41 Arben deposit $5,825.00 unsuccessfully on 2021-10-17 13:56
-
 42 Yin deposit $1,500.00 unsuccessfully on 2021-10-18 05:02
+
 ```
 
-## Appendix
-
-Copy the following statements to your Utils class
-
-``` cs
-//this class depends of the implementation of the following types:
-
-//DayTime struct and AccountType enum
-
-public static class Utils
-
-{
-
-static DayTime \_time = new DayTime(1_048_000_000);
-
-static Random random = new Random();
-
-public static DayTime Time
-
-{
-
-get =\> \_time += random.Next(1000);
-
-}
-
-public static DayTime Now
-
-{
-
-get =\> \_time += 0;
-
-}
-
-public readonly static Dictionary\<AccountType, string\> ACCOUNT_TYPES =
-
-new Dictionary\<AccountType, string\>
-
-{
-
-{ AccountType.Checking , "CK" },
-
-{ AccountType.Saving , "SV" },
-
-{ AccountType.Visa , "VS" }
-
-};
-
-}
-```
