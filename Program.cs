@@ -255,11 +255,85 @@ public abstract class Account
 
     public abstract void PrepareMonthlyStatement();
 
+    protected void RaiseOnTransaction(TransactionEventArgs args)
+    {
+        OnTransaction?.Invoke(this, args);
+    }
+
     public override string ToString()
     {
         string transactionDetails = string.Join("\n", transactions.Select((transaction, index) => $"{index + 1}. {transaction}"));
         string userNames = string.Join(", ", users.Select(user => user.Name));
 
         return $"Account Number: {Number}\nUsers: {userNames}\nBalance: {Balance}\nTransactions:\n{transactionDetails}";
+    }
+}
+
+public class CheckingAccount : Account, ITransaction
+{
+    // Class variables
+    public static readonly double COST_PER_TRANSACTION = 0.05;
+    public static readonly double INTEREST_RATE = 0.005;
+
+    // Instance variables
+    private bool hasOverdraft;
+
+    // Constructor
+    public CheckingAccount(double balance = 0, bool hasOverdraft = false)
+        : base(Utils.ACCOUNT_TYPES[AccountType.Checking], balance)
+    {
+        this.hasOverdraft = hasOverdraft;
+    }
+
+    // Override Deposit method to include transaction cost and event
+    public new void Deposit(double amount, Person person)
+    {
+        base.Deposit(amount, person); // Call base class deposit method
+                                      // In CheckingAccount methods where you want to raise the event
+        RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, true));
+
+    }
+
+    // Implement Withdraw method from ITransaction
+    public void Withdraw(double amount, Person person)
+    {
+        if (!IsUser(person.Name))
+        {
+            // In CheckingAccount methods where you want to raise the event
+            RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, false));
+
+            throw new AccountException(ExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
+        }
+        else if (!person.IsAuthenticated)
+        {
+            // In CheckingAccount methods where you want to raise the event
+            RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, false));
+
+            throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
+        }
+        else if (amount > Balance && !hasOverdraft)
+        {
+            // In CheckingAccount methods where you want to raise the event
+            RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, false));
+
+            throw new AccountException(ExceptionType.NO_OVERDRAFT);
+        }
+        else
+        {
+            // For withdrawal, deposit a negative amount
+            base.Deposit(-amount, person); // This adjusts the balance
+                                           // In CheckingAccount methods where you want to raise the event
+            RaiseOnTransaction(new TransactionEventArgs(person.Name, -amount, true));
+
+        }
+    }
+
+    // Override PrepareMonthlyReport to handle checking account specifics
+    public override void PrepareMonthlyStatement()
+    {
+        double serviceCharge = transactions.Count * COST_PER_TRANSACTION;
+        double interest = (LowestBalance * INTEREST_RATE) / 12;
+        Balance += interest - serviceCharge;
+        transactions.Clear(); // Clear transactions after updating balance
     }
 }
