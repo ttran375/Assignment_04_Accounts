@@ -208,3 +208,58 @@ public static class Logger
         }
     }
 }
+
+public abstract class Account
+{
+    private static int LAST_NUMBER = 100_000;
+
+    protected readonly List<Person> users;
+    protected readonly List<Transaction> transactions;
+
+    public event EventHandler<TransactionEventArgs> OnTransaction;
+
+    public string Number { get; }
+    public double Balance { get; protected set; }
+    public double LowestBalance { get; protected set; }
+
+    public Account(string type, double balance)
+    {
+        Number = $"{type}-{++LAST_NUMBER}";
+        Balance = balance;
+        LowestBalance = balance;
+        transactions = new List<Transaction>();
+        users = new List<Person>();
+    }
+
+    public void Deposit(double amount, Person person)
+    {
+        Balance += amount;
+        if (Balance < LowestBalance)
+            LowestBalance = Balance;
+        
+        Transaction transaction = new Transaction(Number, amount, person);
+        transactions.Add(transaction);
+
+        OnTransaction?.Invoke(this, new TransactionEventArgs(person.Name, amount, true));
+    }
+
+    public void AddUser(Person person)
+    {
+        users.Add(person);
+    }
+
+    public bool IsUser(string name)
+    {
+        return users.Any(user => user.Name == name);
+    }
+
+    public abstract void PrepareMonthlyStatement();
+
+    public override string ToString()
+    {
+        string transactionDetails = string.Join("\n", transactions.Select((transaction, index) => $"{index + 1}. {transaction}"));
+        string userNames = string.Join(", ", users.Select(user => user.Name));
+
+        return $"Account Number: {Number}\nUsers: {userNames}\nBalance: {Balance}\nTransactions:\n{transactionDetails}";
+    }
+}
