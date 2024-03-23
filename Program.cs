@@ -392,3 +392,65 @@ public class SavingAccount : Account, ITransaction
         transactions.Clear(); // Clear transactions after updating balance
     }
 }
+
+public class VisaAccount : Account, ITransaction
+{
+    // Instance variables
+    private double creditLimit;
+
+    // Class variable
+    public static readonly double INTEREST_RATE = 0.1995;
+
+    // Constructor
+    public VisaAccount(double balance = 0, double creditLimit = 1200)
+        : base(Utils.ACCOUNT_TYPES[AccountType.Visa], balance)
+    {
+        this.creditLimit = creditLimit;
+    }
+
+    // DoPayment method to handle credit payments
+    public void DoPayment(double amount, Person person)
+    {
+        base.Deposit(amount, person); // Increase the balance (reduce debt)
+        RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, true)); // Assuming RaiseOnTransaction is implemented in Account
+    }
+
+    // DoPurchase method to handle purchases on the credit account
+    public void DoPurchase(double amount, Person person)
+    {
+        if (!IsUser(person.Name))
+        {
+            RaiseOnTransaction(new TransactionEventArgs(person.Name, -amount, false));
+            throw new AccountException(ExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
+        }
+        else if (!person.IsAuthenticated)
+        {
+            RaiseOnTransaction(new TransactionEventArgs(person.Name, -amount, false));
+            throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
+        }
+        else if (Balance + amount > creditLimit) // Checks if purchase exceeds credit limit
+        {
+            RaiseOnTransaction(new TransactionEventArgs(person.Name, -amount, false));
+            throw new AccountException(ExceptionType.CREDIT_LIMIT_HAS_BEEN_EXCEEDED);
+        }
+        else
+        {
+            base.Deposit(-amount, person); // Decrease the balance (increase debt)
+            RaiseOnTransaction(new TransactionEventArgs(person.Name, -amount, true));
+        }
+    }
+
+    // Override PrepareMonthlyReport to calculate and apply interest
+    public override void PrepareMonthlyStatement()
+    {
+        double interest = (LowestBalance * INTEREST_RATE) / 12;
+        Balance -= interest; // Subtracting interest increases the debt
+        transactions.Clear(); // Clear transactions after updating balance
+    }
+
+    public void Withdraw(double amount, Person person)
+    {
+        DoPurchase(amount, person);
+    }
+
+}
