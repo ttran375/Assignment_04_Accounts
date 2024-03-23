@@ -1677,6 +1677,7 @@ class members is given below:
     constructor contains the following statements to initialize the
     USERS and ACCOUNTS collections.
 
+``` cs
 //initialize the USERS collection
 
 AddPerson("Narendra", "1234-5678"); //0
@@ -1777,6 +1778,8 @@ AddUserToAccount(number, "Patrick");
 
 AddUserToAccount(number, "Hao");
 
+```
+
 2.  **<span class="mark">public static void PrintAccounts( )</span>** –
     this public static method displays all the accounts in the ACCOUNTS
     collection
@@ -1861,6 +1864,7 @@ This method does not display anything on screen
 
 Use the following code in your test harness.
 
+``` cs
 Console.WriteLine("\nAll acounts:");
 
 Bank.PrintAccounts();
@@ -2124,173 +2128,162 @@ Logger.ShowLoginEvents();
 
 Logger.ShowTransactionEvents();
 
+```
+
 ## Sample output
 
 Use the following code in your test harness.
 
+``` txt
 All acounts:
 
-\[VS-100000, VS-100000 Narendra Not logged in, Ilia Not logged in,
-Mehrdad Not logged in \$0.00 - transactions (0)
+[VS-100000, VS-100000 Narendra Not logged in, Ilia Not logged in, Mehrdad Not logged in $0.00 - transactions (0)
 
-\]
+]
 
-\[VS-100001, VS-100001 Vijay Not logged in, Arben Not logged in, Patrick
-Not logged in \$150.00 - transactions (0)
+[VS-100001, VS-100001 Vijay Not logged in, Arben Not logged in, Patrick Not logged in $150.00 - transactions (0)
 
-\]
+]
 
-\[SV-100002, SV-100002 Yin Not logged in, Hao Not logged in, Jake Not
-logged in \$5,000.00 - transactions (0)
+[SV-100002, SV-100002 Yin Not logged in, Hao Not logged in, Jake Not logged in $5,000.00 - transactions (0)
 
-\]
+]
 
-\[SV-100003, SV-100003 Mayy Not logged in, Nicoletta Not logged in
-\$0.00 - transactions (0)
+[SV-100003, SV-100003 Mayy Not logged in, Nicoletta Not logged in $0.00 - transactions (0)
 
-\]
+]
 
-\[CK-100004, CK-100004 Mehrdad Not logged in, Arben Not logged in, Yin
-Not logged in \$2,000.00 - transactions (0)
+[CK-100004, CK-100004 Mehrdad Not logged in, Arben Not logged in, Yin Not logged in $2,000.00 - transactions (0)
 
-\]
+]
 
-\[CK-100005, CK-100005 Jake Not logged in, Nicoletta Not logged in
-\$1,500.00 - transactions (0)
+[CK-100005, CK-100005 Jake Not logged in, Nicoletta Not logged in $1,500.00 - transactions (0)
 
-\]
+]
 
-\[VS-100006, VS-100006 Ilia Not logged in, Vijay Not logged in \$50.00 -
-transactions (0)
+[VS-100006, VS-100006 Ilia Not logged in, Vijay Not logged in $50.00 - transactions (0)
 
-\]
+]
 
-\[SV-100007, SV-100007 Patrick Not logged in, Hao Not logged in
-\$1,000.00 - transactions (0)
+[SV-100007, SV-100007 Patrick Not logged in, Hao Not logged in $1,000.00 - transactions (0)
 
-\]
+]
 
 All Users:
 
-\[Narendra, Narendra Not logged in\]
+[Narendra, Narendra Not logged in]
 
-\[Ilia, Ilia Not logged in\]
+[Ilia, Ilia Not logged in]
 
-\[Mehrdad, Mehrdad Not logged in\]
+[Mehrdad, Mehrdad Not logged in]
 
-\[Vijay, Vijay Not logged in\]
+[Vijay, Vijay Not logged in]
 
-\[Arben, Arben Not logged in\]
+[Arben, Arben Not logged in]
 
-\[Patrick, Patrick Not logged in\]
+[Patrick, Patrick Not logged in]
 
-\[Yin, Yin Not logged in\]
+[Yin, Yin Not logged in]
 
-\[Hao, Hao Not logged in\]
+[Hao, Hao Not logged in]
 
-\[Jake, Jake Not logged in\]
+[Jake, Jake Not logged in]
 
-\[Mayy, Mayy Not logged in\]
+[Mayy, Mayy Not logged in]
 
-\[Nicoletta, Nicoletta Not logged in\]
+[Nicoletta, Nicoletta Not logged in]
 
-VS-100000 Narendra Logged in, Ilia Logged in, Mehrdad Logged in
-\$1,621.00 - transactions (6)
+VS-100000 Narendra Logged in, Ilia Logged in, Mehrdad Logged in $1,621.00 - transactions (6)
 
-VS-100000 \$1,500.00 deposited by Narendra on 2021-08-18 05:10
+VS-100000 $1,500.00 deposited by Narendra on 2021-08-18 05:10
 
-VS-100000 \$200.00 withdrawn by Ilia on 2021-08-19 09:11
+VS-100000 $200.00 withdrawn by Ilia on 2021-08-19 09:11
 
-VS-100000 \$25.00 withdrawn by Mehrdad on 2021-08-20 01:39
+VS-100000 $25.00 withdrawn by Mehrdad on 2021-08-20 01:39
 
-VS-100000 \$15.00 withdrawn by Narendra on 2021-08-22 05:21
+VS-100000 $15.00 withdrawn by Narendra on 2021-08-22 05:21
 
-VS-100000 \$39.00 withdrawn by Ilia on 2021-08-24 18:17
+VS-100000 $39.00 withdrawn by Ilia on 2021-08-24 18:17
 
-VS-100000 \$400.00 deposited by Narendra on 2021-08-25 21:58
+VS-100000 $400.00 deposited by Narendra on 2021-08-25 21:58
 
-VS-100001 Vijay Logged in, Arben Logged in, Patrick Logged in \$590.00 -
-transactions (4)
+VS-100001 Vijay Logged in, Arben Logged in, Patrick Logged in $590.00 - transactions (4)
 
-VS-100001 \$500.00 deposited by Narendra on 2021-08-27 00:39
+VS-100001 $500.00 deposited by Narendra on 2021-08-27 00:39
 
-VS-100001 \$25.00 withdrawn by Vijay on 2021-08-28 23:55
+VS-100001 $25.00 withdrawn by Vijay on 2021-08-28 23:55
 
-VS-100001 \$20.00 withdrawn by Arben on 2021-09-01 09:51
+VS-100001 $20.00 withdrawn by Arben on 2021-09-01 09:51
 
-VS-100001 \$15.00 withdrawn by Patrick on 2021-09-03 03:46
+VS-100001 $15.00 withdrawn by Patrick on 2021-09-03 03:46
 
-SV-100002 Yin Logged in, Hao Logged in, Jake Logged in \$4,505.99 -
-transactions (4)
+SV-100002 Yin Logged in, Hao Logged in, Jake Logged in $4,505.99 - transactions (4)
 
-SV-100002 \$300.00 withdrawn by Yin on 2021-09-04 20:23
+SV-100002 $300.00 withdrawn by Yin on 2021-09-04 20:23
 
-SV-100002 \$32.90 withdrawn by Yin on 2021-09-05 17:11
+SV-100002 $32.90 withdrawn by Yin on 2021-09-05 17:11
 
-SV-100002 \$50.00 withdrawn by Hao on 2021-09-07 08:54
+SV-100002 $50.00 withdrawn by Hao on 2021-09-07 08:54
 
-SV-100002 \$111.11 withdrawn by Jake on 2021-09-08 16:16
+SV-100002 $111.11 withdrawn by Jake on 2021-09-08 16:16
 
-SV-100003 Mayy Not logged in, Nicoletta Logged in \$271.79 -
-transactions (4)
+SV-100003 Mayy Not logged in, Nicoletta Logged in $271.79 - transactions (4)
 
-SV-100003 \$300.00 deposited by Vijay on 2021-09-10 18:14
+SV-100003 $300.00 deposited by Vijay on 2021-09-10 18:14
 
-SV-100003 \$32.90 deposited by Mehrdad on 2021-09-12 20:20
+SV-100003 $32.90 deposited by Mehrdad on 2021-09-12 20:20
 
-SV-100003 \$50.00 deposited by Patrick on 2021-09-13 06:52
+SV-100003 $50.00 deposited by Patrick on 2021-09-13 06:52
 
-SV-100003 \$111.11 withdrawn by Nicoletta on 2021-09-15 00:51
+SV-100003 $111.11 withdrawn by Nicoletta on 2021-09-15 00:51
 
-CK-100004 Mehrdad Logged in, Arben Logged in, Yin Logged in \$728.77 -
-transactions (6)
+CK-100004 Mehrdad Logged in, Arben Logged in, Yin Logged in $728.77 - transactions (6)
 
-CK-100004 \$33.33 deposited by Hao on 2021-09-16 10:40
+CK-100004 $33.33 deposited by Hao on 2021-09-16 10:40
 
-CK-100004 \$40.44 deposited by Hao on 2021-09-18 03:03
+CK-100004 $40.44 deposited by Hao on 2021-09-18 03:03
 
-CK-100004 \$150.00 withdrawn by Mehrdad on 2021-09-20 17:27
+CK-100004 $150.00 withdrawn by Mehrdad on 2021-09-20 17:27
 
-CK-100004 \$200.00 withdrawn by Arben on 2021-09-22 19:01
+CK-100004 $200.00 withdrawn by Arben on 2021-09-22 19:01
 
-CK-100004 \$645.00 withdrawn by Yin on 2021-09-25 02:44
+CK-100004 $645.00 withdrawn by Yin on 2021-09-25 02:44
 
-CK-100004 \$350.00 withdrawn by Yin on 2021-09-27 10:29
+CK-100004 $350.00 withdrawn by Yin on 2021-09-27 10:29
 
-CK-100005 Jake Logged in, Nicoletta Logged in -\$871.23 - transactions
-(6)
+CK-100005 Jake Logged in, Nicoletta Logged in -$871.23 - transactions (6)
 
-CK-100005 \$33.33 deposited by Jake on 2021-09-28 06:51
+CK-100005 $33.33 deposited by Jake on 2021-09-28 06:51
 
-CK-100005 \$40.44 deposited by Hao on 2021-09-29 07:34
+CK-100005 $40.44 deposited by Hao on 2021-09-29 07:34
 
-CK-100005 \$450.00 withdrawn by Nicoletta on 2021-09-30 06:07
+CK-100005 $450.00 withdrawn by Nicoletta on 2021-09-30 06:07
 
-CK-100005 \$500.00 withdrawn by Jake on 2021-10-01 13:11
+CK-100005 $500.00 withdrawn by Jake on 2021-10-01 13:11
 
-CK-100005 \$645.00 withdrawn by Nicoletta on 2021-10-02 12:47
+CK-100005 $645.00 withdrawn by Nicoletta on 2021-10-02 12:47
 
-CK-100005 \$850.00 withdrawn by Nicoletta on 2021-10-03 21:54
+CK-100005 $850.00 withdrawn by Nicoletta on 2021-10-03 21:54
 
-VS-100006 Ilia Logged in, Vijay Logged in \$705.00 - transactions (4)
+VS-100006 Ilia Logged in, Vijay Logged in $705.00 - transactions (4)
 
-VS-100006 \$700.00 deposited by Narendra on 2021-10-05 15:16
+VS-100006 $700.00 deposited by Narendra on 2021-10-05 15:16
 
-VS-100006 \$20.00 withdrawn by Vijay on 2021-10-06 05:47
+VS-100006 $20.00 withdrawn by Vijay on 2021-10-06 05:47
 
-VS-100006 \$10.00 withdrawn by Ilia on 2021-10-07 19:54
+VS-100006 $10.00 withdrawn by Ilia on 2021-10-07 19:54
 
-VS-100006 \$15.00 withdrawn by Ilia on 2021-10-09 08:31
+VS-100006 $15.00 withdrawn by Ilia on 2021-10-09 08:31
 
-SV-100007 Patrick Logged in, Hao Logged in \$1,271.79 - transactions (4)
+SV-100007 Patrick Logged in, Hao Logged in $1,271.79 - transactions (4)
 
-SV-100007 \$300.00 deposited by Vijay on 2021-10-10 06:31
+SV-100007 $300.00 deposited by Vijay on 2021-10-10 06:31
 
-SV-100007 \$32.90 deposited by Mehrdad on 2021-10-11 13:55
+SV-100007 $32.90 deposited by Mehrdad on 2021-10-11 13:55
 
-SV-100007 \$50.00 deposited by Patrick on 2021-10-12 14:04
+SV-100007 $50.00 deposited by Patrick on 2021-10-12 14:04
 
-SV-100007 \$111.11 withdrawn by Hao on 2021-10-13 11:58
+SV-100007 $111.11 withdrawn by Hao on 2021-10-13 11:58
 
 Exceptions:
 
@@ -2310,235 +2303,221 @@ USER_DOES_NOT_EXIST
 
 All transactions
 
-VS-100000 \$1,500.00 deposited by Narendra on 2021-08-18 05:10
+VS-100000 $1,500.00 deposited by Narendra on 2021-08-18 05:10
 
-VS-100000 \$200.00 withdrawn by Ilia on 2021-08-19 09:11
+VS-100000 $200.00 withdrawn by Ilia on 2021-08-19 09:11
 
-VS-100000 \$25.00 withdrawn by Mehrdad on 2021-08-20 01:39
+VS-100000 $25.00 withdrawn by Mehrdad on 2021-08-20 01:39
 
-VS-100000 \$15.00 withdrawn by Narendra on 2021-08-22 05:21
+VS-100000 $15.00 withdrawn by Narendra on 2021-08-22 05:21
 
-VS-100000 \$39.00 withdrawn by Ilia on 2021-08-24 18:17
+VS-100000 $39.00 withdrawn by Ilia on 2021-08-24 18:17
 
-VS-100000 \$400.00 deposited by Narendra on 2021-08-25 21:58
+VS-100000 $400.00 deposited by Narendra on 2021-08-25 21:58
 
-VS-100001 \$500.00 deposited by Narendra on 2021-08-27 00:39
+VS-100001 $500.00 deposited by Narendra on 2021-08-27 00:39
 
-VS-100001 \$25.00 withdrawn by Vijay on 2021-08-28 23:55
+VS-100001 $25.00 withdrawn by Vijay on 2021-08-28 23:55
 
-VS-100001 \$20.00 withdrawn by Arben on 2021-09-01 09:51
+VS-100001 $20.00 withdrawn by Arben on 2021-09-01 09:51
 
-VS-100001 \$15.00 withdrawn by Patrick on 2021-09-03 03:46
+VS-100001 $15.00 withdrawn by Patrick on 2021-09-03 03:46
 
-SV-100002 \$300.00 withdrawn by Yin on 2021-09-04 20:23
+SV-100002 $300.00 withdrawn by Yin on 2021-09-04 20:23
 
-SV-100002 \$32.90 withdrawn by Yin on 2021-09-05 17:11
+SV-100002 $32.90 withdrawn by Yin on 2021-09-05 17:11
 
-SV-100002 \$50.00 withdrawn by Hao on 2021-09-07 08:54
+SV-100002 $50.00 withdrawn by Hao on 2021-09-07 08:54
 
-SV-100002 \$111.11 withdrawn by Jake on 2021-09-08 16:16
+SV-100002 $111.11 withdrawn by Jake on 2021-09-08 16:16
 
-SV-100003 \$300.00 deposited by Vijay on 2021-09-10 18:14
+SV-100003 $300.00 deposited by Vijay on 2021-09-10 18:14
 
-SV-100003 \$32.90 deposited by Mehrdad on 2021-09-12 20:20
+SV-100003 $32.90 deposited by Mehrdad on 2021-09-12 20:20
 
-SV-100003 \$50.00 deposited by Patrick on 2021-09-13 06:52
+SV-100003 $50.00 deposited by Patrick on 2021-09-13 06:52
 
-SV-100003 \$111.11 withdrawn by Nicoletta on 2021-09-15 00:51
+SV-100003 $111.11 withdrawn by Nicoletta on 2021-09-15 00:51
 
-CK-100004 \$33.33 deposited by Hao on 2021-09-16 10:40
+CK-100004 $33.33 deposited by Hao on 2021-09-16 10:40
 
-CK-100004 \$40.44 deposited by Hao on 2021-09-18 03:03
+CK-100004 $40.44 deposited by Hao on 2021-09-18 03:03
 
-CK-100004 \$150.00 withdrawn by Mehrdad on 2021-09-20 17:27
+CK-100004 $150.00 withdrawn by Mehrdad on 2021-09-20 17:27
 
-CK-100004 \$200.00 withdrawn by Arben on 2021-09-22 19:01
+CK-100004 $200.00 withdrawn by Arben on 2021-09-22 19:01
 
-CK-100004 \$645.00 withdrawn by Yin on 2021-09-25 02:44
+CK-100004 $645.00 withdrawn by Yin on 2021-09-25 02:44
 
-CK-100004 \$350.00 withdrawn by Yin on 2021-09-27 10:29
+CK-100004 $350.00 withdrawn by Yin on 2021-09-27 10:29
 
-CK-100005 \$33.33 deposited by Jake on 2021-09-28 06:51
+CK-100005 $33.33 deposited by Jake on 2021-09-28 06:51
 
-CK-100005 \$40.44 deposited by Hao on 2021-09-29 07:34
+CK-100005 $40.44 deposited by Hao on 2021-09-29 07:34
 
-CK-100005 \$450.00 withdrawn by Nicoletta on 2021-09-30 06:07
+CK-100005 $450.00 withdrawn by Nicoletta on 2021-09-30 06:07
 
-CK-100005 \$500.00 withdrawn by Jake on 2021-10-01 13:11
+CK-100005 $500.00 withdrawn by Jake on 2021-10-01 13:11
 
-CK-100005 \$645.00 withdrawn by Nicoletta on 2021-10-02 12:47
+CK-100005 $645.00 withdrawn by Nicoletta on 2021-10-02 12:47
 
-CK-100005 \$850.00 withdrawn by Nicoletta on 2021-10-03 21:54
+CK-100005 $850.00 withdrawn by Nicoletta on 2021-10-03 21:54
 
-VS-100006 \$700.00 deposited by Narendra on 2021-10-05 15:16
+VS-100006 $700.00 deposited by Narendra on 2021-10-05 15:16
 
-VS-100006 \$20.00 withdrawn by Vijay on 2021-10-06 05:47
+VS-100006 $20.00 withdrawn by Vijay on 2021-10-06 05:47
 
-VS-100006 \$10.00 withdrawn by Ilia on 2021-10-07 19:54
+VS-100006 $10.00 withdrawn by Ilia on 2021-10-07 19:54
 
-VS-100006 \$15.00 withdrawn by Ilia on 2021-10-09 08:31
+VS-100006 $15.00 withdrawn by Ilia on 2021-10-09 08:31
 
-SV-100007 \$300.00 deposited by Vijay on 2021-10-10 06:31
+SV-100007 $300.00 deposited by Vijay on 2021-10-10 06:31
 
-SV-100007 \$32.90 deposited by Mehrdad on 2021-10-11 13:55
+SV-100007 $32.90 deposited by Mehrdad on 2021-10-11 13:55
 
-SV-100007 \$50.00 deposited by Patrick on 2021-10-12 14:04
+SV-100007 $50.00 deposited by Patrick on 2021-10-12 14:04
 
-SV-100007 \$111.11 withdrawn by Hao on 2021-10-13 11:58
-
-Before PrepareMonthlyReport()
-
-VS-100000 Narendra Logged in, Ilia Logged in, Mehrdad Logged in
-\$1,621.00 - transactions (6)
-
-VS-100000 \$1,500.00 deposited by Narendra on 2021-08-18 05:10
-
-VS-100000 \$200.00 withdrawn by Ilia on 2021-08-19 09:11
-
-VS-100000 \$25.00 withdrawn by Mehrdad on 2021-08-20 01:39
-
-VS-100000 \$15.00 withdrawn by Narendra on 2021-08-22 05:21
-
-VS-100000 \$39.00 withdrawn by Ilia on 2021-08-24 18:17
-
-VS-100000 \$400.00 deposited by Narendra on 2021-08-25 21:58
-
-After PrepareMonthlyReport()
-
-VS-100000 Narendra Logged in, Ilia Logged in, Mehrdad Logged in
-\$1,621.00 - transactions (0)
+SV-100007 $111.11 withdrawn by Hao on 2021-10-13 11:58
 
 Before PrepareMonthlyReport()
 
-VS-100001 Vijay Not logged in, Arben Logged in, Patrick Logged in
-\$590.00 - transactions (4)
+VS-100000 Narendra Logged in, Ilia Logged in, Mehrdad Logged in $1,621.00 - transactions (6)
 
-VS-100001 \$500.00 deposited by Narendra on 2021-08-27 00:39
+VS-100000 $1,500.00 deposited by Narendra on 2021-08-18 05:10
 
-VS-100001 \$25.00 withdrawn by Vijay on 2021-08-28 23:55
+VS-100000 $200.00 withdrawn by Ilia on 2021-08-19 09:11
 
-VS-100001 \$20.00 withdrawn by Arben on 2021-09-01 09:51
+VS-100000 $25.00 withdrawn by Mehrdad on 2021-08-20 01:39
 
-VS-100001 \$15.00 withdrawn by Patrick on 2021-09-03 03:46
+VS-100000 $15.00 withdrawn by Narendra on 2021-08-22 05:21
+
+VS-100000 $39.00 withdrawn by Ilia on 2021-08-24 18:17
+
+VS-100000 $400.00 deposited by Narendra on 2021-08-25 21:58
 
 After PrepareMonthlyReport()
 
-VS-100001 Vijay Not logged in, Arben Logged in, Patrick Logged in
-\$619.92 - transactions (0)
+VS-100000 Narendra Logged in, Ilia Logged in, Mehrdad Logged in $1,621.00 - transactions (0)
 
 Before PrepareMonthlyReport()
 
-SV-100002 Yin Logged in, Hao Logged in, Jake Not logged in \$4,505.99 -
-transactions (4)
+VS-100001 Vijay Not logged in, Arben Logged in, Patrick Logged in $590.00 - transactions (4)
 
-SV-100002 \$300.00 withdrawn by Yin on 2021-09-04 20:23
+VS-100001 $500.00 deposited by Narendra on 2021-08-27 00:39
 
-SV-100002 \$32.90 withdrawn by Yin on 2021-09-05 17:11
+VS-100001 $25.00 withdrawn by Vijay on 2021-08-28 23:55
 
-SV-100002 \$50.00 withdrawn by Hao on 2021-09-07 08:54
+VS-100001 $20.00 withdrawn by Arben on 2021-09-01 09:51
 
-SV-100002 \$111.11 withdrawn by Jake on 2021-09-08 16:16
+VS-100001 $15.00 withdrawn by Patrick on 2021-09-03 03:46
 
 After PrepareMonthlyReport()
 
-SV-100002 Yin Logged in, Hao Logged in, Jake Not logged in \$4,573.38 -
-transactions (0)
+VS-100001 Vijay Not logged in, Arben Logged in, Patrick Logged in $619.92 - transactions (0)
 
 Before PrepareMonthlyReport()
 
-SV-100003 Mayy Not logged in, Nicoletta Logged in \$271.79 -
-transactions (4)
+SV-100002 Yin Logged in, Hao Logged in, Jake Not logged in $4,505.99 - transactions (4)
 
-SV-100003 \$300.00 deposited by Vijay on 2021-09-10 18:14
+SV-100002 $300.00 withdrawn by Yin on 2021-09-04 20:23
 
-SV-100003 \$32.90 deposited by Mehrdad on 2021-09-12 20:20
+SV-100002 $32.90 withdrawn by Yin on 2021-09-05 17:11
 
-SV-100003 \$50.00 deposited by Patrick on 2021-09-13 06:52
+SV-100002 $50.00 withdrawn by Hao on 2021-09-07 08:54
 
-SV-100003 \$111.11 withdrawn by Nicoletta on 2021-09-15 00:51
+SV-100002 $111.11 withdrawn by Jake on 2021-09-08 16:16
 
 After PrepareMonthlyReport()
 
-SV-100003 Mayy Not logged in, Nicoletta Logged in \$271.59 -
-transactions (0)
+SV-100002 Yin Logged in, Hao Logged in, Jake Not logged in $4,573.38 - transactions (0)
 
 Before PrepareMonthlyReport()
 
-CK-100004 Mehrdad Logged in, Arben Logged in, Yin Logged in \$728.77 -
-transactions (6)
+SV-100003 Mayy Not logged in, Nicoletta Logged in $271.79 - transactions (4)
 
-CK-100004 \$33.33 deposited by Hao on 2021-09-16 10:40
+SV-100003 $300.00 deposited by Vijay on 2021-09-10 18:14
 
-CK-100004 \$40.44 deposited by Hao on 2021-09-18 03:03
+SV-100003 $32.90 deposited by Mehrdad on 2021-09-12 20:20
 
-CK-100004 \$150.00 withdrawn by Mehrdad on 2021-09-20 17:27
+SV-100003 $50.00 deposited by Patrick on 2021-09-13 06:52
 
-CK-100004 \$200.00 withdrawn by Arben on 2021-09-22 19:01
-
-CK-100004 \$645.00 withdrawn by Yin on 2021-09-25 02:44
-
-CK-100004 \$350.00 withdrawn by Yin on 2021-09-27 10:29
+SV-100003 $111.11 withdrawn by Nicoletta on 2021-09-15 00:51
 
 After PrepareMonthlyReport()
 
-CK-100004 Mehrdad Logged in, Arben Logged in, Yin Logged in \$732.11 -
-transactions (0)
+SV-100003 Mayy Not logged in, Nicoletta Logged in $271.59 - transactions (0)
 
 Before PrepareMonthlyReport()
 
-CK-100005 Jake Not logged in, Nicoletta Logged in -\$871.23 -
-transactions (6)
+CK-100004 Mehrdad Logged in, Arben Logged in, Yin Logged in $728.77 - transactions (6)
 
-CK-100005 \$33.33 deposited by Jake on 2021-09-28 06:51
+CK-100004 $33.33 deposited by Hao on 2021-09-16 10:40
 
-CK-100005 \$40.44 deposited by Hao on 2021-09-29 07:34
+CK-100004 $40.44 deposited by Hao on 2021-09-18 03:03
 
-CK-100005 \$450.00 withdrawn by Nicoletta on 2021-09-30 06:07
+CK-100004 $150.00 withdrawn by Mehrdad on 2021-09-20 17:27
 
-CK-100005 \$500.00 withdrawn by Jake on 2021-10-01 13:11
+CK-100004 $200.00 withdrawn by Arben on 2021-09-22 19:01
 
-CK-100005 \$645.00 withdrawn by Nicoletta on 2021-10-02 12:47
+CK-100004 $645.00 withdrawn by Yin on 2021-09-25 02:44
 
-CK-100005 \$850.00 withdrawn by Nicoletta on 2021-10-03 21:54
+CK-100004 $350.00 withdrawn by Yin on 2021-09-27 10:29
 
 After PrepareMonthlyReport()
 
-CK-100005 Jake Not logged in, Nicoletta Logged in -\$875.89 -
-transactions (0)
+CK-100004 Mehrdad Logged in, Arben Logged in, Yin Logged in $732.11 - transactions (0)
 
 Before PrepareMonthlyReport()
 
-VS-100006 Ilia Logged in, Vijay Not logged in \$705.00 - transactions
-(4)
+CK-100005 Jake Not logged in, Nicoletta Logged in -$871.23 - transactions (6)
 
-VS-100006 \$700.00 deposited by Narendra on 2021-10-05 15:16
+CK-100005 $33.33 deposited by Jake on 2021-09-28 06:51
 
-VS-100006 \$20.00 withdrawn by Vijay on 2021-10-06 05:47
+CK-100005 $40.44 deposited by Hao on 2021-09-29 07:34
 
-VS-100006 \$10.00 withdrawn by Ilia on 2021-10-07 19:54
+CK-100005 $450.00 withdrawn by Nicoletta on 2021-09-30 06:07
 
-VS-100006 \$15.00 withdrawn by Ilia on 2021-10-09 08:31
+CK-100005 $500.00 withdrawn by Jake on 2021-10-01 13:11
+
+CK-100005 $645.00 withdrawn by Nicoletta on 2021-10-02 12:47
+
+CK-100005 $850.00 withdrawn by Nicoletta on 2021-10-03 21:54
 
 After PrepareMonthlyReport()
 
-VS-100006 Ilia Logged in, Vijay Not logged in \$714.98 - transactions
-(0)
+CK-100005 Jake Not logged in, Nicoletta Logged in -$875.89 - transactions (0)
 
 Before PrepareMonthlyReport()
 
-SV-100007 Patrick Logged in, Hao Logged in \$1,271.79 - transactions (4)
+VS-100006 Ilia Logged in, Vijay Not logged in $705.00 - transactions (4)
 
-SV-100007 \$300.00 deposited by Vijay on 2021-10-10 06:31
+VS-100006 $700.00 deposited by Narendra on 2021-10-05 15:16
 
-SV-100007 \$32.90 deposited by Mehrdad on 2021-10-11 13:55
+VS-100006 $20.00 withdrawn by Vijay on 2021-10-06 05:47
 
-SV-100007 \$50.00 deposited by Patrick on 2021-10-12 14:04
+VS-100006 $10.00 withdrawn by Ilia on 2021-10-07 19:54
 
-SV-100007 \$111.11 withdrawn by Hao on 2021-10-13 11:58
+VS-100006 $15.00 withdrawn by Ilia on 2021-10-09 08:31
 
 After PrepareMonthlyReport()
 
-SV-100007 Patrick Logged in, Hao Logged in \$1,286.59 - transactions (0)
+VS-100006 Ilia Logged in, Vijay Not logged in $714.98 - transactions (0)
+
+Before PrepareMonthlyReport()
+
+SV-100007 Patrick Logged in, Hao Logged in $1,271.79 - transactions (4)
+
+SV-100007 $300.00 deposited by Vijay on 2021-10-10 06:31
+
+SV-100007 $32.90 deposited by Mehrdad on 2021-10-11 13:55
+
+SV-100007 $50.00 deposited by Patrick on 2021-10-12 14:04
+
+SV-100007 $111.11 withdrawn by Hao on 2021-10-13 11:58
+
+After PrepareMonthlyReport()
+
+SV-100007 Patrick Logged in, Hao Logged in $1,286.59 - transactions (0)
 
 Login events as of 2021-10-18 05:02
 
@@ -2566,94 +2545,96 @@ Login events as of 2021-10-18 05:02
 
 Transaction events as of 2021-10-18 05:02
 
-1 Narendra deposit \$1,500.00 successfully on 2021-08-17 07:05
+1 Narendra deposit $1,500.00 successfully on 2021-08-17 07:05
 
-2 Ilia deposit \$200.00 successfully on 2021-08-18 19:58
+2 Ilia deposit $200.00 successfully on 2021-08-18 19:58
 
-3 Mehrdad deposit \$25.00 successfully on 2021-08-19 12:26
+3 Mehrdad deposit $25.00 successfully on 2021-08-19 12:26
 
-4 Narendra deposit \$15.00 successfully on 2021-08-21 05:58
+4 Narendra deposit $15.00 successfully on 2021-08-21 05:58
 
-5 Ilia deposit \$39.00 successfully on 2021-08-23 14:17
+5 Ilia deposit $39.00 successfully on 2021-08-23 14:17
 
-6 Narendra deposit \$400.00 successfully on 2021-08-25 06:04
+6 Narendra deposit $400.00 successfully on 2021-08-25 06:04
 
-7 Narendra deposit \$500.00 successfully on 2021-08-26 03:11
+7 Narendra deposit $500.00 successfully on 2021-08-26 03:11
 
-8 Vijay deposit \$25.00 successfully on 2021-08-27 16:59
+8 Vijay deposit $25.00 successfully on 2021-08-27 16:59
 
-9 Arben deposit \$20.00 successfully on 2021-08-30 05:42
+9 Arben deposit $20.00 successfully on 2021-08-30 05:42
 
-10 Patrick deposit \$15.00 successfully on 2021-09-01 22:08
+10 Patrick deposit $15.00 successfully on 2021-09-01 22:08
 
-11 Yin deposit \$300.00 successfully on 2021-09-04 13:01
+11 Yin deposit $300.00 successfully on 2021-09-04 13:01
 
-12 Yin deposit \$32.90 successfully on 2021-09-05 11:14
+12 Yin deposit $32.90 successfully on 2021-09-05 11:14
 
-13 Hao deposit \$50.00 successfully on 2021-09-06 07:43
+13 Hao deposit $50.00 successfully on 2021-09-06 07:43
 
-14 Jake deposit \$111.11 successfully on 2021-09-07 12:20
+14 Jake deposit $111.11 successfully on 2021-09-07 12:20
 
-15 Vijay deposit \$300.00 successfully on 2021-09-09 14:05
+15 Vijay deposit $300.00 successfully on 2021-09-09 14:05
 
-16 Mehrdad deposit \$32.90 successfully on 2021-09-11 16:50
+16 Mehrdad deposit $32.90 successfully on 2021-09-11 16:50
 
-17 Patrick deposit \$50.00 successfully on 2021-09-13 02:42
+17 Patrick deposit $50.00 successfully on 2021-09-13 02:42
 
-18 Nicoletta deposit \$111.11 successfully on 2021-09-13 23:30
+18 Nicoletta deposit $111.11 successfully on 2021-09-13 23:30
 
-19 Hao deposit \$33.33 successfully on 2021-09-16 08:38
+19 Hao deposit $33.33 successfully on 2021-09-16 08:38
 
-20 Hao deposit \$40.44 successfully on 2021-09-17 01:40
+20 Hao deposit $40.44 successfully on 2021-09-17 01:40
 
-21 Mehrdad deposit \$150.00 successfully on 2021-09-19 11:17
+21 Mehrdad deposit $150.00 successfully on 2021-09-19 11:17
 
-22 Arben deposit \$200.00 successfully on 2021-09-22 01:01
+22 Arben deposit $200.00 successfully on 2021-09-22 01:01
 
-23 Yin deposit \$645.00 successfully on 2021-09-23 21:42
+23 Yin deposit $645.00 successfully on 2021-09-23 21:42
 
-24 Yin deposit \$350.00 successfully on 2021-09-26 04:27
+24 Yin deposit $350.00 successfully on 2021-09-26 04:27
 
-25 Jake deposit \$33.33 successfully on 2021-09-27 22:25
+25 Jake deposit $33.33 successfully on 2021-09-27 22:25
 
-26 Hao deposit \$40.44 successfully on 2021-09-28 15:46
+26 Hao deposit $40.44 successfully on 2021-09-28 15:46
 
-27 Nicoletta deposit \$450.00 successfully on 2021-09-30 04:37
+27 Nicoletta deposit $450.00 successfully on 2021-09-30 04:37
 
-28 Jake deposit \$500.00 successfully on 2021-09-30 17:15
+28 Jake deposit $500.00 successfully on 2021-09-30 17:15
 
-29 Nicoletta deposit \$645.00 successfully on 2021-10-02 08:42
+29 Nicoletta deposit $645.00 successfully on 2021-10-02 08:42
 
-30 Nicoletta deposit \$850.00 successfully on 2021-10-02 22:48
+30 Nicoletta deposit $850.00 successfully on 2021-10-02 22:48
 
-31 Narendra deposit \$700.00 successfully on 2021-10-04 20:47
+31 Narendra deposit $700.00 successfully on 2021-10-04 20:47
 
-32 Vijay deposit \$20.00 successfully on 2021-10-05 21:04
+32 Vijay deposit $20.00 successfully on 2021-10-05 21:04
 
-33 Ilia deposit \$10.00 successfully on 2021-10-06 23:57
+33 Ilia deposit $10.00 successfully on 2021-10-06 23:57
 
-34 Ilia deposit \$15.00 successfully on 2021-10-08 06:25
+34 Ilia deposit $15.00 successfully on 2021-10-08 06:25
 
-35 Vijay deposit \$300.00 successfully on 2021-10-09 14:23
+35 Vijay deposit $300.00 successfully on 2021-10-09 14:23
 
-36 Mehrdad deposit \$32.90 successfully on 2021-10-11 05:38
+36 Mehrdad deposit $32.90 successfully on 2021-10-11 05:38
 
-37 Patrick deposit \$50.00 successfully on 2021-10-12 06:37
+37 Patrick deposit $50.00 successfully on 2021-10-12 06:37
 
-38 Hao deposit \$111.11 successfully on 2021-10-13 10:12
+38 Hao deposit $111.11 successfully on 2021-10-13 10:12
 
-39 Vijay deposit \$12.50 unsuccessfully on 2021-10-15 10:24
+39 Vijay deposit $12.50 unsuccessfully on 2021-10-15 10:24
 
-40 Narendra deposit \$12.50 unsuccessfully on 2021-10-16 14:19
+40 Narendra deposit $12.50 unsuccessfully on 2021-10-16 14:19
 
-41 Arben deposit \$5,825.00 unsuccessfully on 2021-10-17 13:56
+41 Arben deposit $5,825.00 unsuccessfully on 2021-10-17 13:56
 
-42 Yin deposit \$1,500.00 unsuccessfully on 2021-10-18 05:02
+42 Yin deposit $1,500.00 unsuccessfully on 2021-10-18 05:02
+```
 
 ## Appendix
 
 Copy the following statements to your Utils class
 
+``` cs
 //this class depends of the implementation of the following types:
 
 //DayTime struct and AccountType enum
@@ -2697,3 +2678,4 @@ new Dictionary\<AccountType, string\>
 };
 
 }
+```
