@@ -3,8 +3,9 @@
 ### Due: See course shell for due date and time
 
 <img src="./media/image1.png" style="width:6.1375in;height:3.77292in"
-alt="Graphical user interface Description automatically generated" />Check
-with you professor to see if you are permitted to work as a group.
+alt="Graphical user interface Description automatically generated" />
+
+Check with you professor to see if you are permitted to work as a group.
 
 The application is by far the most complex system that you have
 attempted so far. It consists of eleven classes, two structs, one

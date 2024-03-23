@@ -337,3 +337,58 @@ public class CheckingAccount : Account, ITransaction
         transactions.Clear(); // Clear transactions after updating balance
     }
 }
+
+public class SavingAccount : Account, ITransaction
+{
+    // Class variables
+    public static readonly double COST_PER_TRANSACTION = 0.5;
+    public static readonly double INTEREST_RATE = 0.015;
+
+    // Constructor
+    public SavingAccount(double balance = 0)
+        : base(Utils.ACCOUNT_TYPES[AccountType.Saving], balance)
+    {
+        // Note: hasOverdraft parameter removed as per the fields description
+    }
+
+    // Override Deposit method to include transaction cost and event
+    public new void Deposit(double amount, Person person)
+    {
+        base.Deposit(amount, person); // Call base class deposit method
+        RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, true)); // Assuming RaiseOnTransaction is implemented in Account
+    }
+
+    // Implement Withdraw method from ITransaction
+    public void Withdraw(double amount, Person person)
+    {
+        if (!IsUser(person.Name))
+        {
+            RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, false));
+            throw new AccountException(ExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
+        }
+        else if (!person.IsAuthenticated)
+        {
+            RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, false));
+            throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
+        }
+        else if (amount > Balance) // No overdraft for SavingAccount
+        {
+            RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, false));
+            throw new AccountException(ExceptionType.NO_OVERDRAFT);
+        }
+        else
+        {
+            base.Deposit(-amount, person); // Adjust balance by depositing a negative amount
+            RaiseOnTransaction(new TransactionEventArgs(person.Name, -amount, true));
+        }
+    }
+
+    // Override PrepareMonthlyReport to handle saving account specifics
+    public override void PrepareMonthlyStatement()
+    {
+        double serviceCharge = transactions.Count * COST_PER_TRANSACTION;
+        double interest = (LowestBalance * INTEREST_RATE) / 12;
+        Balance += interest - serviceCharge;
+        transactions.Clear(); // Clear transactions after updating balance
+    }
+}
