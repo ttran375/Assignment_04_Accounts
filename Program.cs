@@ -1,6 +1,4 @@
-﻿using System;
-
-public struct Transaction
+﻿public struct Transaction
 {
     public string AccountNumber { get; }
     public double Amount { get; }
@@ -158,5 +156,55 @@ public class AccountException : Exception
     public AccountException(ExceptionType type)
     {
         Type = type;
+    }
+}
+
+public class TransactionEventArgs : LoginEventArgs
+{
+    public double Amount { get; }
+
+    public TransactionEventArgs(string personName, double amount, bool success) : base(personName, success)
+    {
+        Amount = amount;
+    }
+}
+
+public static class Logger
+{
+    private static List<string> loginEvents = new List<string>();
+    private static List<string> transactionEvents = new List<string>();
+
+    public static void LoginHandler(object sender, EventArgs args)
+    {
+        LoginEventArgs loginArgs = args as LoginEventArgs;
+        string logMessage = $"{loginArgs.Name} login attempt: {loginArgs.Success}, Time: {Utils.Now}";
+        loginEvents.Add(logMessage);
+    }
+
+    public static void TransactionHandler(object sender, EventArgs args)
+    {
+        TransactionEventArgs transactionArgs = args as TransactionEventArgs;
+        string logMessage = $"{transactionArgs.Name} {transactionArgs.Success} transaction: {transactionArgs.Amount}, Time: {Utils.Now}";
+        transactionEvents.Add(logMessage);
+    }
+
+    public static void ShowLoginEvents()
+    {
+        Console.WriteLine($"Current Time: {Utils.Now}");
+        Console.WriteLine("Login Events:");
+        for (int i = 0; i < loginEvents.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {loginEvents[i]}");
+        }
+    }
+
+    public static void ShowTransactionEvents()
+    {
+        Console.WriteLine($"Current Time: {Utils.Now}");
+        Console.WriteLine("Transaction Events:");
+        for (int i = 0; i < transactionEvents.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {transactionEvents[i]}");
+        }
     }
 }
