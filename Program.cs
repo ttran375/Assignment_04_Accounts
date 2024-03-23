@@ -69,8 +69,8 @@ public enum AccountType
     Visa
 }
 
-//this class depends of the implementation of the following types:
-//DayTime struct and AccountType enum
+
+
 public static class Utils
 {
     static DayTime _time = new DayTime(1_048_000_000);
@@ -271,94 +271,94 @@ public abstract class Account
 
 public class CheckingAccount : Account, ITransaction
 {
-    // Class variables
+
     public static readonly double COST_PER_TRANSACTION = 0.05;
     public static readonly double INTEREST_RATE = 0.005;
 
-    // Instance variables
+
     private bool hasOverdraft;
 
-    // Constructor
+
     public CheckingAccount(double balance = 0, bool hasOverdraft = false)
         : base(Utils.ACCOUNT_TYPES[AccountType.Checking], balance)
     {
         this.hasOverdraft = hasOverdraft;
     }
 
-    // Override Deposit method to include transaction cost and event
+
     public new void Deposit(double amount, Person person)
     {
-        base.Deposit(amount, person); // Call base class deposit method
-                                      // In CheckingAccount methods where you want to raise the event
+        base.Deposit(amount, person);
+
         RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, true));
 
     }
 
-    // Implement Withdraw method from ITransaction
+
     public void Withdraw(double amount, Person person)
     {
         if (!IsUser(person.Name))
         {
-            // In CheckingAccount methods where you want to raise the event
+
             RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, false));
 
             throw new AccountException(ExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
         }
         else if (!person.IsAuthenticated)
         {
-            // In CheckingAccount methods where you want to raise the event
+
             RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, false));
 
             throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
         }
         else if (amount > Balance && !hasOverdraft)
         {
-            // In CheckingAccount methods where you want to raise the event
+
             RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, false));
 
             throw new AccountException(ExceptionType.NO_OVERDRAFT);
         }
         else
         {
-            // For withdrawal, deposit a negative amount
-            base.Deposit(-amount, person); // This adjusts the balance
-                                           // In CheckingAccount methods where you want to raise the event
+
+            base.Deposit(-amount, person);
+
             RaiseOnTransaction(new TransactionEventArgs(person.Name, -amount, true));
 
         }
     }
 
-    // Override PrepareMonthlyReport to handle checking account specifics
+
     public override void PrepareMonthlyReport()
     {
         double serviceCharge = transactions.Count * COST_PER_TRANSACTION;
         double interest = (LowestBalance * INTEREST_RATE) / 12;
         Balance += interest - serviceCharge;
-        transactions.Clear(); // Clear transactions after updating balance
+        transactions.Clear();
     }
 }
 
 public class SavingAccount : Account, ITransaction
 {
-    // Class variables
+
     public static readonly double COST_PER_TRANSACTION = 0.5;
     public static readonly double INTEREST_RATE = 0.015;
 
-    // Constructor
+
     public SavingAccount(double balance = 0)
         : base(Utils.ACCOUNT_TYPES[AccountType.Saving], balance)
     {
-        // Note: hasOverdraft parameter removed as per the fields description
+
     }
 
-    // Override Deposit method to include transaction cost and event
+
     public new void Deposit(double amount, Person person)
     {
-        base.Deposit(amount, person); // Call base class deposit method
-        RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, true)); // Assuming RaiseOnTransaction is implemented in Account
+        base.Deposit(amount, person);
+        RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, true));
     }
 
-    // Implement Withdraw method from ITransaction
+
     public void Withdraw(double amount, Person person)
     {
         if (!IsUser(person.Name))
@@ -371,51 +371,51 @@ public class SavingAccount : Account, ITransaction
             RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, false));
             throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
         }
-        else if (amount > Balance) // No overdraft for SavingAccount
+        else if (amount > Balance)
         {
             RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, false));
             throw new AccountException(ExceptionType.NO_OVERDRAFT);
         }
         else
         {
-            base.Deposit(-amount, person); // Adjust balance by depositing a negative amount
+            base.Deposit(-amount, person);
             RaiseOnTransaction(new TransactionEventArgs(person.Name, -amount, true));
         }
     }
 
-    // Override PrepareMonthlyReport to handle saving account specifics
+
     public override void PrepareMonthlyReport()
     {
         double serviceCharge = transactions.Count * COST_PER_TRANSACTION;
         double interest = (LowestBalance * INTEREST_RATE) / 12;
         Balance += interest - serviceCharge;
-        transactions.Clear(); // Clear transactions after updating balance
+        transactions.Clear();
     }
 }
 
 public class VisaAccount : Account, ITransaction
 {
-    // Instance variables
+
     private double creditLimit;
 
-    // Class variable
+
     public static readonly double INTEREST_RATE = 0.1995;
 
-    // Constructor
+
     public VisaAccount(double balance = 0, double creditLimit = 1200)
         : base(Utils.ACCOUNT_TYPES[AccountType.Visa], balance)
     {
         this.creditLimit = creditLimit;
     }
 
-    // DoPayment method to handle credit payments
+
     public void DoPayment(double amount, Person person)
     {
-        base.Deposit(amount, person); // Increase the balance (reduce debt)
-        RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, true)); // Assuming RaiseOnTransaction is implemented in Account
+        base.Deposit(amount, person);
+        RaiseOnTransaction(new TransactionEventArgs(person.Name, amount, true));
     }
 
-    // DoPurchase method to handle purchases on the credit account
+
     public void DoPurchase(double amount, Person person)
     {
         if (!IsUser(person.Name))
@@ -428,24 +428,24 @@ public class VisaAccount : Account, ITransaction
             RaiseOnTransaction(new TransactionEventArgs(person.Name, -amount, false));
             throw new AccountException(ExceptionType.USER_NOT_LOGGED_IN);
         }
-        else if (Balance + amount > creditLimit) // Checks if purchase exceeds credit limit
+        else if (Balance + amount > creditLimit)
         {
             RaiseOnTransaction(new TransactionEventArgs(person.Name, -amount, false));
             throw new AccountException(ExceptionType.CREDIT_LIMIT_HAS_BEEN_EXCEEDED);
         }
         else
         {
-            base.Deposit(-amount, person); // Decrease the balance (increase debt)
+            base.Deposit(-amount, person);
             RaiseOnTransaction(new TransactionEventArgs(person.Name, -amount, true));
         }
     }
 
-    // Override PrepareMonthlyReport to calculate and apply interest
+
     public override void PrepareMonthlyReport()
     {
         double interest = (LowestBalance * INTEREST_RATE) / 12;
-        Balance -= interest; // Subtracting interest increases the debt
-        transactions.Clear(); // Clear transactions after updating balance
+        Balance -= interest;
+        transactions.Clear();
     }
 
     public void Withdraw(double amount, Person person)
@@ -472,7 +472,7 @@ public class VisaAccount : Account, ITransaction
         }
         else
         {
-            base.Deposit(-amount, person); // Decrease the balance (repay debt)
+            base.Deposit(-amount, person);
             RaiseOnTransaction(new TransactionEventArgs(person.Name, -amount, true));
         }
     }
@@ -501,7 +501,7 @@ public class VisaAccount : Account, ITransaction
         }
         else
         {
-            base.Deposit(-amount, person); // Decrease the balance (increase debt)
+            base.Deposit(-amount, person);
             RaiseOnTransaction(new TransactionEventArgs(person.Name, -amount, true));
         }
     }
@@ -515,49 +515,49 @@ public static class Bank
 
     static Bank()
     {
-        //initialize the USERS collection
 
-        AddPerson("Narendra", "1234-5678"); //0
 
-        AddPerson("Ilia", "2345-6789"); //1
+        AddPerson("Narendra", "1234-5678");
 
-        AddPerson("Mehrdad", "3456-7890"); //2
+        AddPerson("Ilia", "2345-6789");
 
-        AddPerson("Vijay", "4567-8901"); //3
+        AddPerson("Mehrdad", "3456-7890");
 
-        AddPerson("Arben", "5678-9012"); //4
+        AddPerson("Vijay", "4567-8901");
 
-        AddPerson("Patrick", "6789-0123"); //5
+        AddPerson("Arben", "5678-9012");
 
-        AddPerson("Yin", "7890-1234"); //6
+        AddPerson("Patrick", "6789-0123");
 
-        AddPerson("Hao", "8901-2345"); //7
+        AddPerson("Yin", "7890-1234");
 
-        AddPerson("Jake", "9012-3456"); //8
+        AddPerson("Hao", "8901-2345");
 
-        AddPerson("Mayy", "1224-5678"); //9
+        AddPerson("Jake", "9012-3456");
 
-        AddPerson("Nicoletta", "2344-6789"); //10
+        AddPerson("Mayy", "1224-5678");
 
-        //initialize the ACCOUNTS collection
+        AddPerson("Nicoletta", "2344-6789");
 
-        AddAccount(new VisaAccount()); //VS-100000
 
-        AddAccount(new VisaAccount(150, -500)); //VS-100001
 
-        AddAccount(new SavingAccount(5000)); //SV-100002
+        AddAccount(new VisaAccount());
 
-        AddAccount(new SavingAccount()); //SV-100003
+        AddAccount(new VisaAccount(150, -500));
 
-        AddAccount(new CheckingAccount(2000)); //CK-100004
+        AddAccount(new SavingAccount(5000));
 
-        AddAccount(new CheckingAccount(1500, true));//CK-100005
+        AddAccount(new SavingAccount());
 
-        AddAccount(new VisaAccount(50, -550)); //VS-100006
+        AddAccount(new CheckingAccount(2000));
 
-        AddAccount(new SavingAccount(1000)); //SV-100007
+        AddAccount(new CheckingAccount(1500, true));
 
-        //associate users with accounts
+        AddAccount(new VisaAccount(50, -550));
+
+        AddAccount(new SavingAccount(1000));
+
+
 
         string number = "VS-100000";
 
@@ -742,7 +742,7 @@ class Program
 
         p10.Login("234"); p8.Login("901");
 
-        //a visa account
+
 
         VisaAccount a = Bank.GetAccount("VS-100000") as VisaAccount;
 
@@ -772,7 +772,7 @@ class Program
 
         Console.WriteLine(a);
 
-        //a saving account
+
 
         SavingAccount b = Bank.GetAccount("SV-100002") as SavingAccount;
 
@@ -788,7 +788,7 @@ class Program
 
         b = Bank.GetAccount("SV-100003") as SavingAccount;
 
-        b.Deposit(300, p3); //ok even though p3 is not a holder
+        b.Deposit(300, p3);
 
         b.Deposit(32.90, p2);
 
@@ -798,7 +798,7 @@ class Program
 
         Console.WriteLine(b);
 
-        //a checking account
+
 
         CheckingAccount c = Bank.GetAccount("CK-100004") as CheckingAccount;
 
@@ -846,7 +846,7 @@ class Program
 
         b = Bank.GetAccount("SV-100007") as SavingAccount;
 
-        b.Deposit(300, p3); //ok even though p3 is not a holder
+        b.Deposit(300, p3);
 
         b.Deposit(32.90, p2);
 
@@ -858,13 +858,13 @@ class Program
 
         Console.WriteLine("\n\nExceptions:");
 
-        //The following will cause exception
+
 
         try
 
         {
 
-            p8.Login("911"); //incorrect password
+            p8.Login("911");
 
         }
 
@@ -876,7 +876,7 @@ class Program
 
             p3.Logout();
 
-            a.Purchase(12.5, p3); //exception user is not logged in
+            a.Purchase(12.5, p3);
 
         }
 
@@ -886,7 +886,7 @@ class Program
 
         {
 
-            a.Purchase(12.5, p0); //user is not associated with this account
+            a.Purchase(12.5, p0);
 
         }
 
@@ -896,7 +896,7 @@ class Program
 
         {
 
-            a.Purchase(5825, p4); //credit limit exceeded
+            a.Purchase(5825, p4);
 
         }
 
@@ -906,7 +906,7 @@ class Program
 
         {
 
-            c.Withdraw(1500, p6); //no overdraft
+            c.Withdraw(1500, p6);
 
         }
 
@@ -916,7 +916,7 @@ class Program
 
         {
 
-            Bank.GetAccount("CK-100018"); //account does not exist
+            Bank.GetAccount("CK-100018");
 
         }
 
@@ -926,13 +926,13 @@ class Program
 
         {
 
-            Bank.GetPerson("Trudeau"); //user does not exist
+            Bank.GetPerson("Trudeau");
 
         }
 
         catch (AccountException e) { Console.WriteLine(e.Message); }
 
-        //show all transactions
+
 
         Console.WriteLine("\n\nAll transactions");
 
@@ -952,7 +952,7 @@ class Program
 
             Console.WriteLine("\nAfter PrepareMonthlyReport()");
 
-            account.PrepareMonthlyReport(); //all transactions are cleared, balance changes
+            account.PrepareMonthlyReport();
 
             Console.WriteLine(account);
 
